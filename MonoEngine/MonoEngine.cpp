@@ -1,28 +1,37 @@
-#include "Mono/GameClass.h"
-#include "Mono/MonoBasics.h"
-#include "Window/Window.h"
+﻿#include "MonoEngine.h"
 
-class Game final : public Window::App {
-public:
-    void Init() override { m_gameClass.Init(); }
+static constexpr auto ASSEMBLY_DIR  = "C:/Program Files/Mono/lib";
+static constexpr auto CONFIG_DIR    = "C:/Program Files/Mono/etc";
+static constexpr auto DOMAIN_NAME   = "MonoEngine";
+static constexpr auto ASSEMBLY_NAME = "Game.dll";
 
-    void Shutdown() override { m_gameClass.Shutdown(); }
+MonoEngine::MonoEngine()
+    : m_mono{ASSEMBLY_DIR, CONFIG_DIR, DOMAIN_NAME, ASSEMBLY_NAME}
+    , m_gameClass{m_mono.GetImage(), "", "Game"} {
+    static const Vertex2D VERTICES[]{
+        {{-0.5f, -0.5f}, {0.0f, 0.0f}, {1.0f, 0.0f, 0.0f, 1.0f}},
+        {{0.5f, -0.5f},  {1.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 1.0f}},
+        {{-0.5f, 0.5f},  {0.0f, 1.0f}, {0.0f, 0.0f, 1.0f, 1.0f}},
+        {{0.5f, 0.5f},   {1.0f, 1.0f}, {1.0f, 1.0f, 1.0f, 1.0f}},
+    };
+    m_quadMesh = Mesh2D(VERTICES, GL_TRIANGLE_STRIP);
 
-    void Update() override { m_gameClass.Update(); }
+    m_gameClass.Init();
+}
 
-private:
-    static constexpr auto ASSEMBLY_DIR  = "C:/Program Files/Mono/lib";
-    static constexpr auto CONFIG_DIR    = "C:/Program Files/Mono/etc";
-    static constexpr auto DOMAIN_NAME   = "MonoEngine";
-    static constexpr auto ASSEMBLY_NAME = "Game.dll";
+MonoEngine::~MonoEngine() {
+    m_gameClass.Shutdown();
+}
 
-    MonoBasics m_mono{ASSEMBLY_DIR, CONFIG_DIR, DOMAIN_NAME, ASSEMBLY_NAME};
-    GameClass  m_gameClass{m_mono.GetImage(), "", "Game"};
-};
+void MonoEngine::Frame() {
+    m_gameClass.Update();
 
-int main() {
-    Window window("MonoEngine", 800, 600);
-    Game   game;
-    window.MainLoop(game);
-    return 0;
+    m_shader.Use();
+    m_quadMesh.BindAndDraw();
+    glBindVertexArray(0);
+    glUseProgram(0);
+}
+
+void MonoEngine::Resize(const int width, const int height) {
+    glViewport(0, 0, width, height);
 }

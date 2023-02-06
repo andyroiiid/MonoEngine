@@ -27,6 +27,12 @@ Window::Window(const char *title, const int width, const int height) {
     m_window = glfwCreateWindow(width, height, title, nullptr, nullptr);
     assert(m_window != nullptr);
 
+    glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow *window, const int width, const int height) {
+        const auto app = static_cast<App *>(glfwGetWindowUserPointer(window));
+        if (app == nullptr) return;
+        app->Resize(width, height);
+    });
+
     glfwMakeContextCurrent(m_window);
 
     LoadGl();
@@ -38,14 +44,16 @@ Window::~Window() {
     glfwTerminate();
 }
 
-void Window::MainLoop(App &app) {
-    app.m_window = this;
-    app.Init();
+void Window::MainLoop(App *app) {
+    glfwSetWindowUserPointer(m_window, app);
+
+    app->Window = this;
     while (!glfwWindowShouldClose(m_window)) {
         glfwPollEvents();
-        app.Update();
+        app->Frame();
         glfwSwapBuffers(m_window);
     }
-    app.Shutdown();
-    app.m_window = nullptr;
+    app->Window = nullptr;
+
+    glfwSetWindowUserPointer(m_window, nullptr);
 }

@@ -3,14 +3,13 @@
 #include <mono/metadata/image.h>
 #include <mono/utils/mono-forward.h>
 
+#include "../Core/Movable.h"
+
 class MonoBasics {
 public:
-    MonoBasics(const char *assemblyDir, const char *configDir, const char *domainName, const char *assemblyName);
+    NO_MOVE_OR_COPY(MonoBasics)
 
-    MonoBasics(const MonoBasics &)            = delete;
-    MonoBasics(MonoBasics &&)                 = delete;
-    MonoBasics &operator=(const MonoBasics &) = delete;
-    MonoBasics &operator=(MonoBasics &&)      = delete;
+    MonoBasics(const char *assemblyDir, const char *configDir, const char *domainName, const char *assemblyName);
 
     ~MonoBasics();
 

@@ -178,6 +178,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MonoEngine.cpp" />
+    <ClCompile Include="GFX\Shader2D.cpp" />
+    <ClCompile Include="GFX\Vertex2D.cpp" />
+    <ClCompile Include="GL\Shader.cpp" />
     <ClCompile Include="Mono\GameClass.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -328,10 +332,17 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="Mono\Test.cpp" />
-    <ClCompile Include="MonoEngine.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Movable.h" />
+    <ClInclude Include="MonoEngine.h" />
+    <ClInclude Include="GFX\Mesh2D.h" />
+    <ClInclude Include="GFX\Shader2D.h" />
+    <ClInclude Include="GFX\Vertex2D.h" />
+    <ClInclude Include="GL\Mesh.h" />
+    <ClInclude Include="GL\Shader.h" />
     <ClInclude Include="Mono\GameClass.h" />
     <ClInclude Include="Mono\MonoBasics.h" />
     <ClInclude Include="Mono\MonoHelpers.h" />

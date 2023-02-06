@@ -21,14 +21,14 @@ public:
         App &operator=(const App &) = delete;
         App &operator=(App &&)      = delete;
         virtual ~App()              = default;
-        virtual void Init()         = 0;
-        virtual void Shutdown()     = 0;
-        virtual void Update()       = 0;
 
-        Window *m_window = nullptr;
+        virtual void Frame()                       = 0;
+        virtual void Resize(int width, int height) = 0;
+
+        Window *Window = nullptr;
     };
 
-    void MainLoop(App &app);
+    void MainLoop(App *app);
 
 private:
     GLFWwindow *m_window = nullptr;

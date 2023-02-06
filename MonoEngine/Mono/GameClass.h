@@ -2,14 +2,13 @@
 
 #include <mono/metadata/object-forward.h>
 
+#include "../Core/Movable.h"
+
 class GameClass {
 public:
-    GameClass(MonoImage *image, const char *nameSpace, const char *name);
+    NO_MOVE_OR_COPY(GameClass)
 
-    GameClass(const GameClass &)            = delete;
-    GameClass(GameClass &&)                 = delete;
-    GameClass &operator=(const GameClass &) = delete;
-    GameClass &operator=(GameClass &&)      = delete;
+    GameClass(MonoImage *image, const char *nameSpace, const char *name);
 
     ~GameClass();
 
