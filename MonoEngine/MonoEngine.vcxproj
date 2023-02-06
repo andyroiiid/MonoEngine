@@ -252,6 +252,7 @@
       <AdditionalIncludeDirectories>C:\Program Files\Mono\include\mono-2.0;</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Mono\MonoBasics.cpp" />
     <ClCompile Include="Mono\MonoHelpers.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -328,11 +329,14 @@
     </ClCompile>
     <ClCompile Include="Mono\Test.cpp" />
     <ClCompile Include="MonoEngine.cpp" />
+    <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mono\GameClass.h" />
+    <ClInclude Include="Mono\MonoBasics.h" />
     <ClInclude Include="Mono\MonoHelpers.h" />
     <ClInclude Include="Mono\Test.h" />
+    <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

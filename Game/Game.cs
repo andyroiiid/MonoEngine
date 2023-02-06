@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 [SuppressMessage("ReSharper", "UnusedType.Global")]
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
@@ -7,10 +6,10 @@ public static class Game
 {
     private static void Init()
     {
-        Console.WriteLine("Init");
+        Test.Log("Init");
         Test.Interop();
-        Console.WriteLine($"Test.GetValue() = {Test.GetValue()}");
-        Console.WriteLine($"Test.Add(1.5f, 2.1f) = {Test.Add(1.5f, 2.1f)}");
+        Test.Log($"Test.GetValue() = {Test.GetValue()}");
+        Test.Log($"Test.Add(1.5f, 2.1f) = {Test.Add(1.5f, 2.1f)}");
     }
 
     private static void Update()
@@ -20,6 +19,6 @@ public static class Game
 
     private static void Shutdown()
     {
-        Console.WriteLine("Shutdown");
+        Test.Log("Shutdown");
     }
 }

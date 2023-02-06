@@ -15,13 +15,13 @@ public:
 
     void Init() const;
 
-    void Update() const;
-
     void Shutdown() const;
+
+    void Update() const;
 
 private:
     MonoClass  *m_class    = nullptr;
     MonoMethod *m_init     = nullptr;
-    MonoMethod *m_update   = nullptr;
     MonoMethod *m_shutdown = nullptr;
+    MonoMethod *m_update   = nullptr;
 };

@@ -8,4 +8,6 @@ __declspec(dllexport) float Test_GetValue();
 __declspec(dllexport) float Test_Add(float a, float b);
 
 __declspec(dllexport) void Test_Clear(float r, float g, float b, float a);
+
+__declspec(dllexport) void Test_Log(const char *message);
 }
