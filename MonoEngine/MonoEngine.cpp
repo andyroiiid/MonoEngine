@@ -24,7 +24,7 @@ MonoEngine::~MonoEngine() {
 }
 
 void MonoEngine::Frame() {
-    m_gameClass.Update();
+    m_gameClass.Frame();
 
     m_shader.Use();
     m_quadMesh.BindAndDraw();
@@ -33,5 +33,7 @@ void MonoEngine::Frame() {
 }
 
 void MonoEngine::Resize(const int width, const int height) {
+    m_gameClass.Resize(width, height);
+
     glViewport(0, 0, width, height);
 }

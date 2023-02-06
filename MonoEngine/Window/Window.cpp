@@ -48,6 +48,11 @@ void Window::MainLoop(App *app) {
     glfwSetWindowUserPointer(m_window, app);
 
     app->Window = this;
+    {
+        int width, height;
+        glfwGetFramebufferSize(m_window, &width, &height);
+        app->Resize(width, height);
+    }
     while (!glfwWindowShouldClose(m_window)) {
         glfwPollEvents();
         app->Frame();

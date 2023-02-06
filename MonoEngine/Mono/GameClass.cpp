@@ -13,14 +13,17 @@ GameClass::GameClass(MonoImage *image, const char *nameSpace, const char *name) 
     assert(m_init != nullptr);
     m_shutdown = SearchMethodInClass(m_class, ":Shutdown()");
     assert(m_shutdown != nullptr);
-    m_update = SearchMethodInClass(m_class, ":Update()");
-    assert(m_update != nullptr);
+    m_frame = SearchMethodInClass(m_class, ":Frame()");
+    assert(m_frame != nullptr);
+    m_resize = SearchMethodInClass(m_class, ":Resize(int,int)");
+    assert(m_resize != nullptr);
 }
 
 GameClass::~GameClass() {
     mono_free_method(m_init);
     mono_free_method(m_shutdown);
-    mono_free_method(m_update);
+    mono_free_method(m_frame);
+    mono_free_method(m_resize);
 }
 
 void GameClass::Init() const {
@@ -31,6 +34,13 @@ void GameClass::Shutdown() const {
     mono_runtime_invoke(m_shutdown, nullptr, nullptr, nullptr);
 }
 
-void GameClass::Update() const {
-    mono_runtime_invoke(m_update, nullptr, nullptr, nullptr);
+void GameClass::Frame() const {
+    mono_runtime_invoke(m_frame, nullptr, nullptr, nullptr);
+}
+
+void GameClass::Resize(int width, int height) const {
+    void *params[2];
+    params[0] = &width;
+    params[1] = &height;
+    mono_runtime_invoke(m_resize, nullptr, params, nullptr);
 }

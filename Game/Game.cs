@@ -12,13 +12,18 @@ public static class Game
         Test.Log($"Test.Add(1.5f, 2.1f) = {Test.Add(1.5f, 2.1f)}");
     }
 
-    private static void Update()
+    private static void Shutdown()
+    {
+        Test.Log("Shutdown");
+    }
+
+    private static void Frame()
     {
         Test.Clear(0.4f, 0.8f, 1.0f, 1.0f);
     }
 
-    private static void Shutdown()
+    private static void Resize(int width, int height)
     {
-        Test.Log("Shutdown");
+        Test.Log($"Resize {width}x{height}");
     }
 }

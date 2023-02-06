@@ -16,11 +16,14 @@ public:
 
     void Shutdown() const;
 
-    void Update() const;
+    void Frame() const;
+
+    void Resize(int width, int height) const;
 
 private:
     MonoClass  *m_class    = nullptr;
     MonoMethod *m_init     = nullptr;
     MonoMethod *m_shutdown = nullptr;
-    MonoMethod *m_update   = nullptr;
+    MonoMethod *m_frame    = nullptr;
+    MonoMethod *m_resize   = nullptr;
 };
