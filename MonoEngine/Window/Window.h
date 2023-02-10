@@ -32,6 +32,10 @@ public:
 
     void MainLoop(App *app);
 
+    void ShowCursor();
+
+    void HideCursor();
+
     [[nodiscard]] glm::vec2 GetMousePos() const;
 
 private:

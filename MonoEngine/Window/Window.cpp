@@ -70,6 +70,16 @@ void Window::MainLoop(App *app) {
     glfwSetWindowUserPointer(m_window, nullptr);
 }
 
+// ReSharper disable once CppMemberFunctionMayBeConst
+void Window::ShowCursor() {
+    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void Window::HideCursor() {
+    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+}
+
 glm::vec2 Window::GetMousePos() const {
     double x, y;
     glfwGetCursorPos(m_window, &x, &y);
@@ -79,6 +89,14 @@ glm::vec2 Window::GetMousePos() const {
 // Bindings
 
 extern "C" {
+__declspec(dllexport) void Window_ShowCursor() {
+    g_window->ShowCursor();
+}
+
+__declspec(dllexport) void Window_HideCursor() {
+    g_window->HideCursor();
+}
+
 __declspec(dllexport) void Window_GetMousePos(glm::vec2 &position) {
     position = g_window->GetMousePos();
 }

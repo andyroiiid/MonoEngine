@@ -13,6 +13,7 @@ public class Game
         Debug.Info("This is an info message.");
         Debug.Warn("This is a warn message.");
         Debug.Error("This is an error message.");
+        Window.HideCursor();
         Renderer2D.SetClearColor(0.4f, 0.8f, 1.0f, 1.0f);
     }
 
@@ -26,8 +27,8 @@ public class Game
         Renderer2D.Clear();
         Window.GetMousePos(out var mousePos);
         mousePos.Y = _size.Y - mousePos.Y;
-        var min = mousePos - Vector2.One * 4.0f;
-        var max = mousePos + Vector2.One * 4.0f;
+        var min = mousePos - 8.0f;
+        var max = mousePos + 8.0f;
         Renderer2D.FillRect(min, max);
     }
 
