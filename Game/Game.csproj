@@ -41,12 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Debug.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="MonoEngine\Debug.cs" />
+    <Compile Include="MonoEngine\Renderer2D.cs" />
+    <Compile Include="MonoEngine\Vector2.cs" />
+    <Compile Include="MonoEngine\Window.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderer2D.cs" />
-    <Compile Include="Vector2.cs" />
-    <Compile Include="Window.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
