@@ -179,6 +179,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GFX\Renderer2D.cpp" />
+    <ClCompile Include="GL\Texture.cpp" />
     <ClCompile Include="MonoEngine.cpp" />
     <ClCompile Include="GFX\Shader2D.cpp" />
     <ClCompile Include="GFX\Vertex2D.cpp" />
@@ -339,6 +340,7 @@
   <ItemGroup>
     <ClInclude Include="Core\Movable.h" />
     <ClInclude Include="GFX\Renderer2D.h" />
+    <ClInclude Include="GL\Texture.h" />
     <ClInclude Include="MonoEngine.h" />
     <ClInclude Include="GFX\Mesh2D.h" />
     <ClInclude Include="GFX\Shader2D.h" />
