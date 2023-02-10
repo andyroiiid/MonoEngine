@@ -39,9 +39,6 @@ namespace MonoEngine
         [DllImport("__Internal", EntryPoint = Prefix + "Bind")]
         private static extern void Bind(Handle texture, uint unit);
 
-        [DllImport("__Internal", EntryPoint = Prefix + "Unbind")]
-        private static extern void Unbind(uint unit);
-
         private readonly Handle _handle;
 
         public Texture(int width, int height, byte[] data)
