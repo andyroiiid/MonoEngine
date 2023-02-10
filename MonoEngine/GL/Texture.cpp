@@ -1,6 +1,8 @@
 ﻿#include "Texture.h"
 
 #include <spdlog/spdlog.h>
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 
 Texture::Texture(const glm::ivec2 &size, const unsigned char *data, const Wrap wrap, const bool filter, const bool mipmaps) {
     m_size = size;
@@ -57,6 +59,16 @@ __declspec(dllexport) void Texture_Destroy(const Texture *texture) {
 
 __declspec(dllexport) Texture *Texture_Create(int width, int height, const unsigned char *data) {
     return new Texture({width, height}, data, Texture::Wrap::Repeat, false, false);
+}
+
+__declspec(dllexport) Texture *Texture_LoadFromMemory(const unsigned char *bytes, const int length) {
+    stbi_set_flip_vertically_on_load(true);
+    int            width  = 0;
+    int            height = 0;
+    unsigned char *data   = stbi_load_from_memory(bytes, length, &width, &height, nullptr, 4);
+    Texture       *result = Texture_Create(width, height, data);
+    stbi_image_free(data);
+    return result;
 }
 
 __declspec(dllexport) void Texture_GetSize(const Texture *texture, glm::vec2 &size) {

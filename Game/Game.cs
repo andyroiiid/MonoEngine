@@ -17,13 +17,7 @@ public class Game
         Window.HideCursor();
         Renderer2D.SetClearColor(0.4f, 0.8f, 1.0f, 1.0f);
 
-        _testTexture = new Texture(2, 2, new byte[]
-        {
-            0xFF, 0x00, 0x00, 0xFF,
-            0x00, 0xFF, 0x00, 0xFF,
-            0x00, 0x00, 0xFF, 0xFF,
-            0xFF, 0xFF, 0xFF, 0xFF,
-        });
+        _testTexture = new Texture("test.png");
 
         Debug.Log($"test texture size = {_testTexture.GetSize()}");
     }
@@ -38,9 +32,8 @@ public class Game
         Renderer2D.Clear();
         {
             _testTexture.Bind(0);
-            var center = _size * 0.5f;
-            var min = center - 8.0f;
-            var max = center + 8.0f;
+            var min = _size * 0.5f;
+            var max = min + _testTexture.GetSize() * 8.0f;
             Renderer2D.FillRect(min, max);
         }
         {

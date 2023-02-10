@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace MonoEngine
@@ -29,6 +30,9 @@ namespace MonoEngine
         [DllImport("__Internal", EntryPoint = Prefix + "Create")]
         private static extern Handle Create(int width, int height, byte[] data);
 
+        [DllImport("__Internal", EntryPoint = Prefix + "LoadFromMemory")]
+        private static extern Handle LoadFromMemory(byte[] bytes, int length);
+
         [DllImport("__Internal", EntryPoint = Prefix + "GetSize")]
         private static extern void GetSize(Handle texture, out Vector2 size);
 
@@ -43,6 +47,12 @@ namespace MonoEngine
         public Texture(int width, int height, byte[] data)
         {
             _handle = Create(width, height, data);
+        }
+
+        public Texture(string filename)
+        {
+            var bytes = File.ReadAllBytes(filename);
+            _handle = LoadFromMemory(bytes, bytes.Length);
         }
 
         public Vector2 GetSize()
