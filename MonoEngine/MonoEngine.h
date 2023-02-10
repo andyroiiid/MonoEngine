@@ -1,8 +1,7 @@
 ﻿#pragma once
 
 #include "Core/Movable.h"
-#include "GFX/Mesh2D.h"
-#include "GFX/Shader2D.h"
+#include "GFX/Renderer2D.h"
 #include "Mono/GameClass.h"
 #include "Mono/MonoBasics.h"
 #include "Window/Window.h"
@@ -23,6 +22,5 @@ private:
     MonoBasics m_mono;
     GameClass  m_gameClass;
 
-    Shader2D m_shader;
-    Mesh2D   m_quadMesh;
+    Renderer2D m_renderer;
 };

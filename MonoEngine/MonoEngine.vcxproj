@@ -178,10 +178,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GFX\Renderer2D.cpp" />
     <ClCompile Include="MonoEngine.cpp" />
     <ClCompile Include="GFX\Shader2D.cpp" />
     <ClCompile Include="GFX\Vertex2D.cpp" />
     <ClCompile Include="GL\Shader.cpp" />
+    <ClCompile Include="Mono\MonoDebug.cpp" />
     <ClCompile Include="Mono\GameClass.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -331,22 +333,22 @@
       <AdditionalIncludeDirectories>C:\Program Files\Mono\include\mono-2.0;</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
-    <ClCompile Include="Mono\Test.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Movable.h" />
+    <ClInclude Include="GFX\Renderer2D.h" />
     <ClInclude Include="MonoEngine.h" />
     <ClInclude Include="GFX\Mesh2D.h" />
     <ClInclude Include="GFX\Shader2D.h" />
     <ClInclude Include="GFX\Vertex2D.h" />
     <ClInclude Include="GL\Mesh.h" />
     <ClInclude Include="GL\Shader.h" />
+    <ClInclude Include="Mono\MonoDebug.h" />
     <ClInclude Include="Mono\GameClass.h" />
     <ClInclude Include="Mono\MonoBasics.h" />
     <ClInclude Include="Mono\MonoHelpers.h" />
-    <ClInclude Include="Mono\Test.h" />
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
