@@ -4,6 +4,8 @@
 #include <glad/glad.h>
 #include <spdlog/spdlog.h>
 
+static Window *g_window = nullptr;
+
 static void LoadGl() {
     const int ret = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
     assert(ret != 0);
@@ -17,6 +19,9 @@ static void LoadGl() {
 }
 
 Window::Window(const char *title, const int width, const int height) {
+    assert(g_window == nullptr);
+    g_window = this;
+
     const int ret = glfwInit();
     assert(ret == GLFW_TRUE);
 
@@ -42,6 +47,8 @@ Window::~Window() {
     glfwDestroyWindow(m_window);
 
     glfwTerminate();
+
+    g_window = nullptr;
 }
 
 void Window::MainLoop(App *app) {
@@ -61,4 +68,18 @@ void Window::MainLoop(App *app) {
     app->Window = nullptr;
 
     glfwSetWindowUserPointer(m_window, nullptr);
+}
+
+glm::vec2 Window::GetMousePos() const {
+    double x, y;
+    glfwGetCursorPos(m_window, &x, &y);
+    return {x, y};
+}
+
+// Bindings
+
+extern "C" {
+__declspec(dllexport) void Window_GetMousePos(glm::vec2 &position) {
+    position = g_window->GetMousePos();
+}
 }

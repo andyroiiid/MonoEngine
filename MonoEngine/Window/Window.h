@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include <glm/vec2.hpp>
+
 // ReSharper disable once CppInconsistentNaming
 struct GLFWwindow;
 
@@ -29,6 +31,8 @@ public:
     };
 
     void MainLoop(App *app);
+
+    [[nodiscard]] glm::vec2 GetMousePos() const;
 
 private:
     GLFWwindow *m_window = nullptr;

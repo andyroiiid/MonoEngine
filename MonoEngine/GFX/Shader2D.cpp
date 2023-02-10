@@ -12,8 +12,11 @@ layout (location = 2) in vec4 aColor;
 layout (location = 0) out vec2 vTexCoord;
 layout (location = 1) out vec4 vColor;
 
+layout (location = 0) uniform vec2 uScreenSize;
+
 void main() {
-    gl_Position = vec4(aPosition, 0, 1);
+    const vec2 position = aPosition / uScreenSize * 2.0 - 1.0;
+    gl_Position = vec4(position, 0.0, 1.0);
     vTexCoord = aTexCoord;
     vColor = aColor;
 }
@@ -31,4 +34,9 @@ void main() {
 }
 )GLSL"
       ) {
+    m_screenSizeLocation = GetUniformLocation("uScreenSize");
+}
+
+void Shader2D::SetScreenSize(const glm::vec2 &screenSize) {
+    SetUniform(m_screenSizeLocation, screenSize);
 }

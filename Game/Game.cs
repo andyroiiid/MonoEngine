@@ -2,9 +2,11 @@
 
 [SuppressMessage("ReSharper", "UnusedType.Global")]
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
-public static class Game
+public class Game
 {
-    private static void Init()
+    private Vector2 _size;
+
+    private void Init()
     {
         Debug.Log("Init");
         Debug.Info("This is an info message.");
@@ -13,20 +15,25 @@ public static class Game
         Renderer2D.SetClearColor(0.4f, 0.8f, 1.0f, 1.0f);
     }
 
-    private static void Shutdown()
+    private void Shutdown()
     {
         Debug.Log("Shutdown");
     }
 
-    private static void Frame()
+    private void Frame()
     {
         Renderer2D.Clear();
-        Renderer2D.DrawLine(0.1f, 0.2f, 0.3f, 0.4f);
-        Renderer2D.FillRect(-0.5f, -0.5f, 0.0f, 0.0f);
+        Window.GetMousePos(out var mousePos);
+        mousePos.Y = _size.Y - mousePos.Y;
+        var min = mousePos - Vector2.One * 4.0f;
+        var max = mousePos + Vector2.One * 4.0f;
+        Renderer2D.FillRect(min, max);
     }
 
-    private static void Resize(int width, int height)
+    private void Resize(int width, int height)
     {
-        Debug.Log($"Resize {width}x{height}");
+        _size.X = width;
+        _size.Y = height;
+        Debug.Log($"Resize {_size}");
     }
 }

@@ -9,4 +9,9 @@ public:
     Shader2D();
 
     ~Shader2D() = default;
+
+    void SetScreenSize(const glm::vec2 &screenSize);
+
+private:
+    GLint m_screenSizeLocation = -1;
 };

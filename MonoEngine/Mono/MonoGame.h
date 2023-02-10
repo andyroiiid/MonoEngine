@@ -1,16 +1,17 @@
 ﻿#pragma once
 
 #include <mono/metadata/object-forward.h>
+#include <mono/utils/mono-forward.h>
 
 #include "../Core/Movable.h"
 
-class GameClass {
+class MonoGame {
 public:
-    NO_MOVE_OR_COPY(GameClass)
+    NO_MOVE_OR_COPY(MonoGame)
 
-    GameClass(MonoImage *image, const char *nameSpace, const char *name);
+    MonoGame(MonoDomain *domain, MonoImage *image, const char *nameSpace, const char *name);
 
-    ~GameClass();
+    ~MonoGame();
 
     void Init() const;
 
@@ -22,6 +23,7 @@ public:
 
 private:
     MonoClass  *m_class    = nullptr;
+    MonoObject *m_instance = nullptr;
     MonoMethod *m_init     = nullptr;
     MonoMethod *m_shutdown = nullptr;
     MonoMethod *m_frame    = nullptr;

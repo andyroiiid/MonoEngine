@@ -184,7 +184,7 @@
     <ClCompile Include="GFX\Vertex2D.cpp" />
     <ClCompile Include="GL\Shader.cpp" />
     <ClCompile Include="Mono\MonoDebug.cpp" />
-    <ClCompile Include="Mono\GameClass.cpp">
+    <ClCompile Include="Mono\MonoGame.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <Optimization>Disabled</Optimization>
@@ -346,7 +346,7 @@
     <ClInclude Include="GL\Mesh.h" />
     <ClInclude Include="GL\Shader.h" />
     <ClInclude Include="Mono\MonoDebug.h" />
-    <ClInclude Include="Mono\GameClass.h" />
+    <ClInclude Include="Mono\MonoGame.h" />
     <ClInclude Include="Mono\MonoBasics.h" />
     <ClInclude Include="Mono\MonoHelpers.h" />
     <ClInclude Include="Window\Window.h" />

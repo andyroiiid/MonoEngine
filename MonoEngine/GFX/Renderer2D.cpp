@@ -16,6 +16,10 @@ Renderer2D::~Renderer2D() {
     g_renderer2D = nullptr;
 }
 
+void Renderer2D::OnResize(int width, int height) {
+    m_shader.SetScreenSize({width, height});
+}
+
 void Renderer2D::SetClearColor(const float r, const float g, const float b, const float a) {
     m_clearColor[0] = r;
     m_clearColor[1] = g;

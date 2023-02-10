@@ -1,5 +1,6 @@
 ﻿#include "Shader.h"
 
+#include <glm/gtc/type_ptr.hpp>
 #include <spdlog/spdlog.h>
 
 static GLuint CreateShader(const GLenum type, const char *source) {
@@ -66,4 +67,33 @@ Shader::~Shader() {
 // ReSharper disable once CppMemberFunctionMayBeConst
 void Shader::Use() {
     glUseProgram(m_program);
+}
+
+GLint Shader::GetUniformLocation(const std::string &name) const {
+    return glGetUniformLocation(m_program, name.c_str());
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void Shader::SetUniform(const GLint location, const float value) {
+    glProgramUniform1f(m_program, location, value);
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void Shader::SetUniform(const GLint location, const glm::vec2 &value) {
+    glProgramUniform2fv(m_program, location, 1, glm::value_ptr(value));
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void Shader::SetUniform(const GLint location, const glm::vec3 &value) {
+    glProgramUniform3fv(m_program, location, 1, glm::value_ptr(value));
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void Shader::SetUniform(const GLint location, const glm::vec4 &value) {
+    glProgramUniform4fv(m_program, location, 1, glm::value_ptr(value));
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void Shader::SetUniform(const GLint location, const glm::mat4 &value) {
+    glProgramUniformMatrix4fv(m_program, location, 1, GL_FALSE, glm::value_ptr(value));
 }

@@ -2,8 +2,8 @@
 
 #include "Core/Movable.h"
 #include "GFX/Renderer2D.h"
-#include "Mono/GameClass.h"
 #include "Mono/MonoBasics.h"
+#include "Mono/MonoGame.h"
 #include "Window/Window.h"
 
 class MonoEngine final : public Window::App {
@@ -20,7 +20,7 @@ public:
 
 private:
     MonoBasics m_mono;
-    GameClass  m_gameClass;
+    MonoGame   m_game;
 
     Renderer2D m_renderer;
 };

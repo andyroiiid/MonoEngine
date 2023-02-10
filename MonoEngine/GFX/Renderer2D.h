@@ -12,6 +12,8 @@ public:
 
     ~Renderer2D();
 
+    void OnResize(int width, int height);
+
     void SetClearColor(float r, float g, float b, float a);
 
     void Clear();

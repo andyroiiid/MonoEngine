@@ -7,20 +7,20 @@ static constexpr auto ASSEMBLY_NAME = "Game.dll";
 
 MonoEngine::MonoEngine()
     : m_mono{ASSEMBLY_DIR, CONFIG_DIR, DOMAIN_NAME, ASSEMBLY_NAME}
-    , m_gameClass{m_mono.GetImage(), "", "Game"} {
-    m_gameClass.Init();
+    , m_game{m_mono.GetDomain(), m_mono.GetImage(), "", "Game"} {
+    m_game.Init();
 }
 
 MonoEngine::~MonoEngine() {
-    m_gameClass.Shutdown();
+    m_game.Shutdown();
 }
 
 void MonoEngine::Frame() {
-    m_gameClass.Frame();
+    m_game.Frame();
 }
 
 void MonoEngine::Resize(const int width, const int height) {
-    m_gameClass.Resize(width, height);
-
+    m_renderer.OnResize(width, height);
     glViewport(0, 0, width, height);
+    m_game.Resize(width, height);
 }

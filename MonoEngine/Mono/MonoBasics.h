@@ -13,6 +13,8 @@ public:
 
     ~MonoBasics();
 
+    [[nodiscard]] MonoDomain *GetDomain() const { return m_domain; }
+
     [[nodiscard]] MonoImage *GetImage() const { return m_image; }
 
 private:
