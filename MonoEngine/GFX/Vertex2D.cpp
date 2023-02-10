@@ -1,6 +1,6 @@
 ﻿#include "Vertex2D.h"
 
-#include "../GL/Mesh.h"
+#include "../GL/VertexBuffer.h"
 
 void Vertex2D::SetupVertexArray(const GLuint vao) {
     SetupVertexArrayFloatsAttrib(vao, 0, 0, 2, offsetof(Vertex2D, Position));

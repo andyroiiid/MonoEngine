@@ -42,10 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
+    <Compile Include="MonoEngine\Color.cs" />
     <Compile Include="MonoEngine\Debug.cs" />
+    <Compile Include="MonoEngine\GLConstants.cs" />
     <Compile Include="MonoEngine\Renderer2D.cs" />
     <Compile Include="MonoEngine\Texture.cs" />
     <Compile Include="MonoEngine\Vector2.cs" />
+    <Compile Include="MonoEngine\Vertex2D.cs" />
     <Compile Include="MonoEngine\Window.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

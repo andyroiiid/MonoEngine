@@ -6,9 +6,6 @@ Renderer2D::Renderer2D() {
     assert(g_renderer2D == nullptr);
     g_renderer2D = this;
 
-    m_lines     = Mesh2D(GL_LINES);
-    m_triangles = Mesh2D(GL_TRIANGLES);
-
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -35,26 +32,9 @@ void Renderer2D::Clear() {
     glClearBufferfv(GL_COLOR, 0, m_clearColor);
 }
 
-void Renderer2D::DrawLine(float x0, float y0, float x1, float y1) {
-    const Vertex2D vertices[]{
-        {{x0, y0}, {0.0f, 0.0f}},
-        {{x1, y1}, {1.0f, 1.0f}},
-    };
-    m_lines.UpdateData(vertices);
-    m_lines.BindAndDraw();
-}
-
-void Renderer2D::FillRect(float x0, float y0, float x1, float y1) {
-    const Vertex2D vertices[]{
-        {{x0, y0}, {0.0f, 0.0f}},
-        {{x1, y0}, {1.0f, 0.0f}},
-        {{x0, y1}, {0.0f, 1.0f}},
-        {{x0, y1}, {0.0f, 1.0f}},
-        {{x1, y0}, {1.0f, 0.0f}},
-        {{x1, y1}, {1.0f, 1.0f}},
-    };
-    m_triangles.UpdateData(vertices);
-    m_triangles.BindAndDraw();
+void Renderer2D::DrawVertices(const size_t numVertices, const Vertex2D *vertices, const GLenum mode) {
+    m_vertexBuffer.UpdateData(numVertices, vertices);
+    m_vertexBuffer.BindAndDraw(mode);
 }
 
 // Bindings
@@ -68,11 +48,7 @@ __declspec(dllexport) void Renderer2D_Clear() {
     g_renderer2D->Clear();
 }
 
-__declspec(dllexport) void Renderer2D_DrawLine(const float x0, const float y0, const float x1, const float y1) {
-    g_renderer2D->DrawLine(x0, y0, x1, y1);
-}
-
-__declspec(dllexport) void Renderer2D_FillRect(const float x0, const float y0, const float x1, const float y1) {
-    g_renderer2D->FillRect(x0, y0, x1, y1);
+__declspec(dllexport) void Renderer2D_DrawVertices(const Vertex2D *vertices, const int numVertices, const int mode) {
+    g_renderer2D->DrawVertices(numVertices, vertices, mode);
 }
 }

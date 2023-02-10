@@ -342,10 +342,10 @@
     <ClInclude Include="GFX\Renderer2D.h" />
     <ClInclude Include="GL\Texture.h" />
     <ClInclude Include="MonoEngine.h" />
-    <ClInclude Include="GFX\Mesh2D.h" />
+    <ClInclude Include="GFX\VertexBuffer2D.h" />
     <ClInclude Include="GFX\Shader2D.h" />
     <ClInclude Include="GFX\Vertex2D.h" />
-    <ClInclude Include="GL\Mesh.h" />
+    <ClInclude Include="GL\VertexBuffer.h" />
     <ClInclude Include="GL\Shader.h" />
     <ClInclude Include="Mono\MonoDebug.h" />
     <ClInclude Include="Mono\MonoGame.h" />

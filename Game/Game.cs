@@ -37,15 +37,15 @@ public class Game
             _fontTexture.Bind(0);
             var min = _screenSize * 0.5f;
             var max = min + _fontTexture.Size;
-            Renderer2D.FillRect(min, max);
+            Renderer2D.DrawRect(min, max);
         }
         {
             _testTexture.Bind(0);
-            Window.GetMousePos(out var mousePos);
+            var mousePos = Window.MousePos;
             mousePos.Y = _screenSize.Y - mousePos.Y;
             var min = mousePos - _testTexture.Size * 0.5f;
             var max = mousePos + _testTexture.Size * 0.5f;
-            Renderer2D.FillRect(min, max);
+            Renderer2D.DrawRect(min, max);
         }
     }
 

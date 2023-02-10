@@ -13,6 +13,15 @@ namespace MonoEngine
         public static extern void HideCursor();
 
         [DllImport("__Internal", EntryPoint = Prefix + "GetMousePos")]
-        public static extern void GetMousePos(out Vector2 mousePos);
+        private static extern void GetMousePos(out Vector2 mousePos);
+
+        public static Vector2 MousePos
+        {
+            get
+            {
+                GetMousePos(out var mousePos);
+                return mousePos;
+            }
+        }
     }
 }

@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 #include "../Core/Movable.h"
-#include "Mesh2D.h"
 #include "Shader2D.h"
+#include "VertexBuffer2D.h"
 
 class Renderer2D {
 public:
@@ -18,15 +18,11 @@ public:
 
     void Clear();
 
-    void DrawLine(float x0, float y0, float x1, float y1);
-
-    void FillRect(float x0, float y0, float x1, float y1);
+    void DrawVertices(size_t numVertices, const Vertex2D *vertices, GLenum mode);
 
 private:
     float m_clearColor[4]{0.2f, 0.2f, 0.2f, 1.0};
 
-    Shader2D m_shader;
-
-    Mesh2D m_lines;
-    Mesh2D m_triangles;
+    Shader2D       m_shader;
+    VertexBuffer2D m_vertexBuffer;
 };
