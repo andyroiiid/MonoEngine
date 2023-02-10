@@ -15,7 +15,7 @@ public class Game
         Debug.Info("This is an info message.");
         Debug.Warn("This is a warn message.");
         Debug.Error("This is an error message.");
-        Window.HideCursor();
+        Window.Cursor = false;
         Renderer2D.SetClearColor(0.4f, 0.8f, 1.0f, 1.0f);
 
         _fontTexture = new Texture("font.png");
@@ -32,6 +32,11 @@ public class Game
 
     private void Frame()
     {
+        if (Window.GetKey(Keys.Escape))
+        {
+            Window.Close();
+        }
+
         Renderer2D.Clear();
         {
             _fontTexture.Bind(0);

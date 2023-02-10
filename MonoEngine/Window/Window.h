@@ -32,11 +32,13 @@ public:
 
     void MainLoop(App *app);
 
-    void ShowCursor();
+    void Close();
 
-    void HideCursor();
+    void SetCursor(bool enabled);
 
     [[nodiscard]] glm::vec2 GetMousePos() const;
+
+    [[nodiscard]] bool GetKey(int key) const;
 
 private:
     GLFWwindow *m_window = nullptr;

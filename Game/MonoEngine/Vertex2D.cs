@@ -13,11 +13,8 @@
             Color = color;
         }
 
-        public Vertex2D(Vector2 position, Vector2 texCoord)
+        public Vertex2D(Vector2 position, Vector2 texCoord) : this(position, texCoord, Color.White)
         {
-            Position = position;
-            TexCoord = texCoord;
-            Color = Color.White;
         }
     }
 }
