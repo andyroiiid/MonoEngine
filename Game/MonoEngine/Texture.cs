@@ -52,10 +52,13 @@ namespace MonoEngine
             _handle = LoadFromMemory(bytes, bytes.Length);
         }
 
-        public Vector2 GetSize()
+        public Vector2 Size
         {
-            GetSize(_handle, out var size);
-            return size;
+            get
+            {
+                GetSize(_handle, out var size);
+                return size;
+            }
         }
 
         public void Bind(uint unit) => Bind(_handle, unit);

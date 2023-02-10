@@ -9,6 +9,9 @@ Renderer2D::Renderer2D() {
     m_lines     = Mesh2D(GL_LINES);
     m_triangles = Mesh2D(GL_TRIANGLES);
 
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     m_shader.Use();
 }
 
