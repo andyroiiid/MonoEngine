@@ -1,6 +1,6 @@
 ﻿namespace MonoEngine.Core
 {
-    public static class GlConstants
+    internal static class GlConstants
     {
         public const int Points = 0x0000;
         public const int Lines = 0x0001;

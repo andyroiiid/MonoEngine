@@ -37,8 +37,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -48,18 +46,6 @@
       <DependentUpon>Assets.resx</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
-    <Compile Include="MonoEngine\Bindings\Debug.cs" />
-    <Compile Include="MonoEngine\Bindings\Renderer2D.cs" />
-    <Compile Include="MonoEngine\Bindings\Texture.cs" />
-    <Compile Include="MonoEngine\Bindings\Window.cs" />
-    <Compile Include="MonoEngine\BitmapFont.cs" />
-    <Compile Include="MonoEngine\Core\Color.cs" />
-    <Compile Include="MonoEngine\Core\GLConstants.cs" />
-    <Compile Include="MonoEngine\Core\Keys.cs" />
-    <Compile Include="MonoEngine\Core\Rect.cs" />
-    <Compile Include="MonoEngine\Core\Vector2.cs" />
-    <Compile Include="MonoEngine\Core\Vertex2D.cs" />
-    <Compile Include="MonoEngine\VertexUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\font_shared_tech_mono.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonoEngineCSharp\MonoEngineCSharp.csproj">
+      <Project>{1a366f1b-f12d-4c4a-bfdc-a5f63552fa0c}</Project>
+      <Name>MonoEngineCSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
