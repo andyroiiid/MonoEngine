@@ -7,7 +7,9 @@ namespace MonoEngine
         private const string Prefix = "Renderer2D_";
 
         [DllImport("__Internal", EntryPoint = Prefix + "SetClearColor")]
-        public static extern void SetClearColor(float r, float g, float b, float a);
+        private static extern void SetClearColor(float r, float g, float b, float a);
+
+        public static void SetClearColor(in Color color) => SetClearColor(color.R, color.G, color.B, color.A);
 
         [DllImport("__Internal", EntryPoint = Prefix + "Clear")]
         public static extern void Clear();
@@ -30,22 +32,16 @@ namespace MonoEngine
             DrawVertices(vertices, vertices.Length, GlConstants.TriangleStrip);
         }
 
-        public static void DrawRect(Vector2 p0, Vector2 p1, Color color)
+        public static void DrawRect(in Rect rect, in Color color)
         {
-            DrawTriangleStrip(
-                new[]
-                {
-                    new Vertex2D(new Vector2(p0.X, p0.Y), new Vector2(0.0f, 0.0f), color),
-                    new Vertex2D(new Vector2(p1.X, p0.Y), new Vector2(1.0f, 0.0f), color),
-                    new Vertex2D(new Vector2(p0.X, p1.Y), new Vector2(0.0f, 1.0f), color),
-                    new Vertex2D(new Vector2(p1.X, p1.Y), new Vector2(1.0f, 1.0f), color),
-                }
-            );
+            var fourVertices = new Vertex2D[4];
+            VertexUtils.BuildRectTriangleStrip(fourVertices, rect, Rect.ZeroToOne, color);
+            DrawTriangleStrip(fourVertices);
         }
 
-        public static void DrawRect(Vector2 p0, Vector2 p1, float transparency = 1.0f)
+        public static void DrawRect(in Rect rect, float transparency = 1.0f)
         {
-            DrawRect(p0, p1, Color.TransparentWhite(transparency));
+            DrawRect(rect, Color.TransparentWhite(transparency));
         }
     }
 }

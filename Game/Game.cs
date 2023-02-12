@@ -16,7 +16,7 @@ public class Game
         Debug.Warn("This is a warn message.");
         Debug.Error("This is an error message.");
         Window.Cursor = false;
-        Renderer2D.SetClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+        Renderer2D.SetClearColor(Color.Black);
 
         _font = new BitmapFont(new Texture(Assets.FontSharedTechMono));
         _testTexture = new Texture("test.png");
@@ -42,9 +42,7 @@ public class Game
             _testTexture.Bind(0);
             var mousePos = Window.MousePos;
             mousePos.Y = _screenSize.Y - mousePos.Y;
-            var min = mousePos - _testTexture.Size * 0.5f;
-            var max = min + _testTexture.Size;
-            Renderer2D.DrawRect(min, max, 0.5f);
+            Renderer2D.DrawRect(new Rect(mousePos - _testTexture.Size * 0.5f, _testTexture.Size), 0.5f);
         }
     }
 
