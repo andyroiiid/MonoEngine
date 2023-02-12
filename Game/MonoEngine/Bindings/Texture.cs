@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using MonoEngine.Core;
 
-namespace MonoEngine
+namespace MonoEngine.Bindings
 {
     public class Texture
     {

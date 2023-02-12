@@ -1,4 +1,4 @@
-﻿namespace MonoEngine
+﻿namespace MonoEngine.Core
 {
     public static class Keys
     {

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace MonoEngine
+namespace MonoEngine.Bindings
 {
     public static class Debug
     {

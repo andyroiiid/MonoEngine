@@ -48,18 +48,18 @@
       <DependentUpon>Assets.resx</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
+    <Compile Include="MonoEngine\Bindings\Debug.cs" />
+    <Compile Include="MonoEngine\Bindings\Renderer2D.cs" />
+    <Compile Include="MonoEngine\Bindings\Texture.cs" />
+    <Compile Include="MonoEngine\Bindings\Window.cs" />
     <Compile Include="MonoEngine\BitmapFont.cs" />
-    <Compile Include="MonoEngine\Color.cs" />
-    <Compile Include="MonoEngine\Debug.cs" />
-    <Compile Include="MonoEngine\GLConstants.cs" />
-    <Compile Include="MonoEngine\Keys.cs" />
-    <Compile Include="MonoEngine\Rect.cs" />
-    <Compile Include="MonoEngine\Renderer2D.cs" />
-    <Compile Include="MonoEngine\Texture.cs" />
-    <Compile Include="MonoEngine\Vector2.cs" />
-    <Compile Include="MonoEngine\Vertex2D.cs" />
+    <Compile Include="MonoEngine\Core\Color.cs" />
+    <Compile Include="MonoEngine\Core\GLConstants.cs" />
+    <Compile Include="MonoEngine\Core\Keys.cs" />
+    <Compile Include="MonoEngine\Core\Rect.cs" />
+    <Compile Include="MonoEngine\Core\Vector2.cs" />
+    <Compile Include="MonoEngine\Core\Vertex2D.cs" />
     <Compile Include="MonoEngine\VertexUtils.cs" />
-    <Compile Include="MonoEngine\Window.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

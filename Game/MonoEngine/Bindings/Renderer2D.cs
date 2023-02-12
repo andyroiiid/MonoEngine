@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
+using MonoEngine.Core;
 
-namespace MonoEngine
+namespace MonoEngine.Bindings
 {
     public static class Renderer2D
     {

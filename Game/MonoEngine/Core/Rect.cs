@@ -1,4 +1,4 @@
-﻿namespace MonoEngine
+﻿namespace MonoEngine.Core
 {
     public struct Rect
     {
