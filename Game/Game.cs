@@ -18,7 +18,7 @@ public class Game
         Window.Cursor = false;
         Renderer2D.SetClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 
-        _font = new BitmapFont("font.png");
+        _font = new BitmapFont(new Texture(BuiltinAssets.font_shared_tech_mono));
         _testTexture = new Texture("test.png");
 
         Debug.Log($"test texture size = {_testTexture.Size}");

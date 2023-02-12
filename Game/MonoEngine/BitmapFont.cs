@@ -23,9 +23,9 @@ namespace MonoEngine
         private readonly Texture _texture;
         private readonly Vector2 _charPixelSize;
 
-        public BitmapFont(string filename)
+        public BitmapFont(Texture texture)
         {
-            _texture = new Texture(filename);
+            _texture = texture;
             _charPixelSize = _texture.Size * GridUvSize;
         }
 
