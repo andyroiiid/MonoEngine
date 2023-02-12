@@ -52,6 +52,7 @@
         <Compile Include="Core\Vector2.cs" />
         <Compile Include="Core\Vertex2D.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="TextureGridAtlas.cs" />
         <Compile Include="VertexUtils.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
