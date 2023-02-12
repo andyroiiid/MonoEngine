@@ -68,4 +68,24 @@ internal class Assets {
             return ((byte[])(obj));
         }
     }
+    
+    /// <summary>
+    ///   Looks up a localized resource of type System.Byte[].
+    /// </summary>
+    internal static byte[] KenneyTinyDungeon {
+        get {
+            object obj = ResourceManager.GetObject("KenneyTinyDungeon", resourceCulture);
+            return ((byte[])(obj));
+        }
+    }
+    
+    /// <summary>
+    ///   Looks up a localized resource of type System.Byte[].
+    /// </summary>
+    internal static byte[] KenneyTinyTown {
+        get {
+            object obj = ResourceManager.GetObject("KenneyTinyTown", resourceCulture);
+            return ((byte[])(obj));
+        }
+    }
 }

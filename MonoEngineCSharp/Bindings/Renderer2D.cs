@@ -33,11 +33,21 @@ namespace MonoEngine.Bindings
             DrawVertices(vertices, vertices.Length, GlConstants.TriangleStrip);
         }
 
-        public static void DrawRect(in Rect rect, in Color color)
+        public static void DrawRect(in Rect rect, in Rect uvRect, in Color color)
         {
             var fourVertices = new Vertex2D[4];
-            VertexUtils.BuildRectTriangleStrip(fourVertices, rect, Rect.ZeroToOne, color);
+            VertexUtils.BuildRectTriangleStrip(fourVertices, rect, uvRect, color);
             DrawTriangleStrip(fourVertices);
+        }
+
+        public static void DrawRect(in Rect rect, in Rect uvRect, float transparency = 1.0f)
+        {
+            DrawRect(rect, uvRect, Color.TransparentWhite(transparency));
+        }
+
+        public static void DrawRect(in Rect rect, in Color color)
+        {
+            DrawRect(rect, Rect.ZeroToOne, color);
         }
 
         public static void DrawRect(in Rect rect, float transparency = 1.0f)

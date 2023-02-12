@@ -58,7 +58,7 @@ __declspec(dllexport) void Texture_Destroy(const Texture *texture) {
 }
 
 __declspec(dllexport) Texture *Texture_Create(int width, int height, const unsigned char *data) {
-    return new Texture({width, height}, data, Texture::Wrap::Repeat, true, true);
+    return new Texture({width, height}, data, Texture::Wrap::Clamp, false, false);
 }
 
 __declspec(dllexport) Texture *Texture_LoadFromMemory(const unsigned char *bytes, const int length) {

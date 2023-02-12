@@ -7,28 +7,27 @@ using MonoEngine.Core;
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
 public class Game
 {
-    private Vector2 _screenSize;
     private BitmapFont _font;
-    private Texture _testTexture;
+    private TextureGridAtlas _kenneyTinyTown;
+    private TextureGridAtlas _kenneyTinyDungeon;
+
+    private Vector2 _screenSize;
 
     private void Init()
     {
-        Debug.Log("Init");
-        Debug.Info("This is an info message.");
-        Debug.Warn("This is a warn message.");
-        Debug.Error("This is an error message.");
+        Debug.Info("Init");
+
         Window.Cursor = false;
         Renderer2D.SetClearColor(Color.Black);
 
         _font = new BitmapFont(new Texture(Assets.FontSharedTechMono));
-        _testTexture = new Texture("test.png");
-
-        Debug.Log($"test texture size = {_testTexture.Size}");
+        _kenneyTinyTown = new TextureGridAtlas(new Texture(Assets.KenneyTinyTown), 12, 11);
+        _kenneyTinyDungeon = new TextureGridAtlas(new Texture(Assets.KenneyTinyDungeon), 12, 11);
     }
 
     private void Shutdown()
     {
-        Debug.Log("Shutdown");
+        Debug.Info("Shutdown");
     }
 
     private void Frame()
@@ -39,12 +38,24 @@ public class Game
         }
 
         Renderer2D.Clear();
+
         _font.DrawText("Hello, world!", new Vector2(32.0f, 32.0f), Color.White);
+
         {
-            _testTexture.Bind(0);
             var mousePos = Window.MousePos;
             mousePos.Y = _screenSize.Y - mousePos.Y;
-            Renderer2D.DrawRect(new Rect(mousePos - _testTexture.Size * 0.5f, _testTexture.Size), 0.5f);
+
+            _kenneyTinyTown.Texture.Bind(0);
+            Renderer2D.DrawRect(
+                new Rect(mousePos - _kenneyTinyTown.GridPixelSize * 4.0f, _kenneyTinyTown.GridPixelSize * 4.0f),
+                _kenneyTinyTown.GetGridUvRect(2)
+            );
+
+            _kenneyTinyDungeon.Texture.Bind(0);
+            Renderer2D.DrawRect(
+                new Rect(mousePos, _kenneyTinyDungeon.GridPixelSize * 4.0f),
+                _kenneyTinyDungeon.GetGridUvRect(12)
+            );
         }
     }
 
@@ -52,6 +63,6 @@ public class Game
     {
         _screenSize.X = width;
         _screenSize.Y = height;
-        Debug.Log($"Resize {_screenSize}");
+        Debug.Info($"Resize {_screenSize}");
     }
 }

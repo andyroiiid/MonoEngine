@@ -15,4 +15,10 @@
     <data name="FontSharedTechMono" type="System.Resources.ResXFileRef">
         <value>Resources\font_shared_tech_mono.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </data>
+    <data name="KenneyTinyDungeon" type="System.Resources.ResXFileRef">
+        <value>Resources\kenney_tiny_dungeon.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </data>
+    <data name="KenneyTinyTown" type="System.Resources.ResXFileRef">
+        <value>Resources\kenney_tiny_town.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </data>
 </root>
