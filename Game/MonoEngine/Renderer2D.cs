@@ -30,15 +30,22 @@ namespace MonoEngine
             DrawVertices(vertices, vertices.Length, GlConstants.TriangleStrip);
         }
 
-        public static void DrawRect(Vector2 p0, Vector2 p1)
+        public static void DrawRect(Vector2 p0, Vector2 p1, Color color)
         {
-            DrawTriangleStrip(new[]
-            {
-                new Vertex2D(new Vector2(p0.X, p0.Y), new Vector2(0.0f, 0.0f)),
-                new Vertex2D(new Vector2(p1.X, p0.Y), new Vector2(1.0f, 0.0f)),
-                new Vertex2D(new Vector2(p0.X, p1.Y), new Vector2(0.0f, 1.0f)),
-                new Vertex2D(new Vector2(p1.X, p1.Y), new Vector2(1.0f, 1.0f)),
-            });
+            DrawTriangleStrip(
+                new[]
+                {
+                    new Vertex2D(new Vector2(p0.X, p0.Y), new Vector2(0.0f, 0.0f), color),
+                    new Vertex2D(new Vector2(p1.X, p0.Y), new Vector2(1.0f, 0.0f), color),
+                    new Vertex2D(new Vector2(p0.X, p1.Y), new Vector2(0.0f, 1.0f), color),
+                    new Vertex2D(new Vector2(p1.X, p1.Y), new Vector2(1.0f, 1.0f), color),
+                }
+            );
+        }
+
+        public static void DrawRect(Vector2 p0, Vector2 p1, float transparency = 1.0f)
+        {
+            DrawRect(p0, p1, Color.TransparentWhite(transparency));
         }
     }
 }

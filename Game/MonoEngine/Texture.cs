@@ -63,12 +63,16 @@ namespace MonoEngine
 
         public void Bind(uint unit) => Bind(_handle, unit);
 
-        public static readonly Texture White = new Texture(2, 2, new byte[]
-        {
-            0xFF, 0xFF, 0xFF, 0xFF,
-            0xFF, 0xFF, 0xFF, 0xFF,
-            0xFF, 0xFF, 0xFF, 0xFF,
-            0xFF, 0xFF, 0xFF, 0xFF
-        });
+        public readonly static Texture White = new Texture(
+            2,
+            2,
+            new byte[]
+            {
+                0xFF, 0xFF, 0xFF, 0xFF,
+                0xFF, 0xFF, 0xFF, 0xFF,
+                0xFF, 0xFF, 0xFF, 0xFF,
+                0xFF, 0xFF, 0xFF, 0xFF
+            }
+        );
     }
 }
