@@ -42,10 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuiltinAssets.Designer.cs">
+    <Compile Include="Assets.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BuiltinAssets.resx</DependentUpon>
+      <DependentUpon>Assets.resx</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
     <Compile Include="MonoEngine\BitmapFont.cs" />
@@ -62,9 +62,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BuiltinAssets.resx">
+    <EmbeddedResource Include="Assets.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>BuiltinAssets.Designer.cs</LastGenOutput>
+      <LastGenOutput>Assets.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
