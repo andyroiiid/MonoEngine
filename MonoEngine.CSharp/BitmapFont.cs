@@ -1,45 +1,39 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using MonoEngine.Core;
 using MonoEngine.GL;
+using MonoEngine.Tiles;
 
 namespace MonoEngine
 {
     public class BitmapFont
     {
-        private readonly TextureGridAtlas _atlas;
+        private readonly Tileset _tileset;
 
         public BitmapFont(Texture texture)
         {
-            _atlas = new TextureGridAtlas(texture, 16, 16);
+            _tileset = new Tileset(texture, 16, 16);
         }
 
         private Vertex2D[] BuildTextVertices(string text, in Color color)
         {
             var position = Vector2.Zero;
-            var vertices = new Vertex2D[text.Length * 6];
-            var offset = 0;
+            var drawCalls = new List<Tileset.TileDrawCall>(text.Length);
             foreach (var c in text)
             {
                 if (!char.IsWhiteSpace(c))
                 {
-                    VertexUtils.BuildRectTriangles(
-                        new ArraySegment<Vertex2D>(vertices, offset, 6),
-                        new Rect(position, _atlas.GridPixelSize),
-                        _atlas.GetGridUvRect(c),
-                        color
-                    );
-                    offset += 6;
+                    drawCalls.Add(new Tileset.TileDrawCall(c, position, color));
                 }
 
-                position.X += _atlas.GridPixelSize.X;
+                position.X += _tileset.TilePixelSize.X;
             }
 
-            return vertices;
+            return _tileset.BuildDrawCallTriangles(drawCalls);
         }
 
         public void DrawText(string text, in Vector2 position, in Color color)
         {
-            _atlas.Texture.Bind(0);
+            _tileset.Texture.Bind(0);
             DynamicRenderer.DrawVertices(BuildTextVertices(text, color), Primitive.Triangles, position);
         }
     }

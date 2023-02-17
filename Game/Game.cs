@@ -3,14 +3,15 @@ using MonoEngine;
 using MonoEngine.Bindings;
 using MonoEngine.Core;
 using MonoEngine.GL;
+using MonoEngine.Tiles;
 
 [SuppressMessage("ReSharper", "UnusedType.Global")]
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
 public class Game
 {
     private BitmapFont _font;
-    private TextureGridAtlas _kenneyTinyDungeon;
-    private TextureGridAtlas _kenneyTinyTown;
+    private Tileset _kenneyTinyDungeon;
+    private Tileset _kenneyTinyTown;
 
     private Vector2 _screenSize;
 
@@ -28,8 +29,8 @@ public class Game
         ImmediateContext.EnableBlend();
 
         _font = new BitmapFont(Texture.FromFile("Assets/Fonts/SharedTechMono.png"));
-        _kenneyTinyDungeon = new TextureGridAtlas(Texture.FromFile("Assets/Textures/Kenney/TinyDungeon.png"), 12, 11);
-        _kenneyTinyTown = new TextureGridAtlas(Texture.FromFile("Assets/Textures/Kenney/TinyTown.png"), 12, 11);
+        _kenneyTinyDungeon = new Tileset(Texture.FromFile("Assets/Textures/Kenney/TinyDungeon.png"), 12, 11);
+        _kenneyTinyTown = new Tileset(Texture.FromFile("Assets/Textures/Kenney/TinyTown.png"), 12, 11);
     }
 
     private void Shutdown()
@@ -56,16 +57,16 @@ public class Game
 
             _kenneyTinyDungeon.Texture.Bind(0);
             DynamicRenderer.DrawRect(
-                _kenneyTinyDungeon.GridPixelSize * 4.0f,
-                _kenneyTinyDungeon.GetGridUvRect(12),
+                _kenneyTinyDungeon.TilePixelSize * 4.0f,
+                _kenneyTinyDungeon.GetTileUvRect(12),
                 mousePos
             );
 
             _kenneyTinyTown.Texture.Bind(0);
             DynamicRenderer.DrawRect(
-                _kenneyTinyTown.GridPixelSize * 4.0f,
-                _kenneyTinyTown.GetGridUvRect(2),
-                mousePos - _kenneyTinyTown.GridPixelSize * 4.0f
+                _kenneyTinyTown.TilePixelSize * 4.0f,
+                _kenneyTinyTown.GetTileUvRect(2),
+                mousePos - _kenneyTinyTown.TilePixelSize * 4.0f
             );
         }
     }
