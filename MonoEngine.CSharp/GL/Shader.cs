@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using MonoEngine.Core;
 
 namespace MonoEngine.GL
 {
@@ -63,6 +64,11 @@ namespace MonoEngine.GL
         protected void SetUniform(int location, float x, float y)
         {
             SetUniform2F(_handle, location, x, y);
+        }
+
+        protected void SetUniform(int location, Vector2 v)
+        {
+            SetUniform(location, v.X, v.Y);
         }
 
         protected void SetUniform(int location, float x, float y, float z)

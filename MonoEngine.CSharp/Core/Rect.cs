@@ -18,6 +18,6 @@
 
         public override string ToString() => $"Rect({Position}, {Size})";
 
-        public readonly static Rect ZeroToOne = new Rect(Vector2.Zero, Vector2.One);
+        public static readonly Rect ZeroToOne = new Rect(Vector2.Zero, Vector2.One);
     }
 }

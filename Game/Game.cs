@@ -3,13 +3,11 @@ using MonoEngine;
 using MonoEngine.Bindings;
 using MonoEngine.Core;
 using MonoEngine.GL;
-using MonoEngine.Shaders;
 
 [SuppressMessage("ReSharper", "UnusedType.Global")]
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
 public class Game
 {
-    private BaseShader _shader;
     private BitmapFont _font;
     private TextureGridAtlas _kenneyTinyDungeon;
     private TextureGridAtlas _kenneyTinyTown;
@@ -29,7 +27,6 @@ public class Game
         ImmediateContext.SetClearColor(Color.Black);
         ImmediateContext.EnableBlend();
 
-        _shader = new BaseShader();
         _font = new BitmapFont(Texture.FromFile("Assets/Fonts/SharedTechMono.png"));
         _kenneyTinyDungeon = new TextureGridAtlas(Texture.FromFile("Assets/Textures/Kenney/TinyDungeon.png"), 12, 11);
         _kenneyTinyTown = new TextureGridAtlas(Texture.FromFile("Assets/Textures/Kenney/TinyTown.png"), 12, 11);
@@ -49,7 +46,7 @@ public class Game
 
         ImmediateContext.Clear();
 
-        _shader.Use();
+        DynamicRenderer.UseShader();
 
         _font.DrawText("Hello, world!", new Vector2(32.0f, 32.0f), Color.White);
 
@@ -59,14 +56,16 @@ public class Game
 
             _kenneyTinyDungeon.Texture.Bind(0);
             DynamicRenderer.DrawRect(
-                new Rect(mousePos, _kenneyTinyDungeon.GridPixelSize * 4.0f),
-                _kenneyTinyDungeon.GetGridUvRect(12)
+                _kenneyTinyDungeon.GridPixelSize * 4.0f,
+                _kenneyTinyDungeon.GetGridUvRect(12),
+                mousePos
             );
 
             _kenneyTinyTown.Texture.Bind(0);
             DynamicRenderer.DrawRect(
-                new Rect(mousePos - _kenneyTinyTown.GridPixelSize * 4.0f, _kenneyTinyTown.GridPixelSize * 4.0f),
-                _kenneyTinyTown.GetGridUvRect(2)
+                _kenneyTinyTown.GridPixelSize * 4.0f,
+                _kenneyTinyTown.GetGridUvRect(2),
+                mousePos - _kenneyTinyTown.GridPixelSize * 4.0f
             );
         }
     }
@@ -75,7 +74,7 @@ public class Game
     {
         _screenSize.X = width;
         _screenSize.Y = height;
-        _shader.SetScreenSize(width, height);
+        DynamicRenderer.Resize(width, height);
         Debug.Info($"Resize {_screenSize}");
     }
 }

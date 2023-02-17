@@ -13,8 +13,9 @@ namespace MonoEngine
             _atlas = new TextureGridAtlas(texture, 16, 16);
         }
 
-        private Vertex2D[] BuildTextVertices(string text, Vector2 position, in Color color)
+        private Vertex2D[] BuildTextVertices(string text, in Color color)
         {
+            var position = Vector2.Zero;
             var vertices = new Vertex2D[text.Length * 6];
             var offset = 0;
             foreach (var c in text)
@@ -39,7 +40,7 @@ namespace MonoEngine
         public void DrawText(string text, in Vector2 position, in Color color)
         {
             _atlas.Texture.Bind(0);
-            DynamicRenderer.DrawVertices(BuildTextVertices(text, position, color), Primitive.Triangles);
+            DynamicRenderer.DrawVertices(BuildTextVertices(text, color), Primitive.Triangles, position);
         }
     }
 }
