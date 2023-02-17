@@ -9,8 +9,6 @@ namespace MonoEngine.Bindings
         [DllImport("__Internal", EntryPoint = Prefix + "Info")]
         public static extern void Info(string message);
 
-        public static void Log(string message) => Info(message);
-
         [DllImport("__Internal", EntryPoint = Prefix + "Warn")]
         public static extern void Warn(string message);
 

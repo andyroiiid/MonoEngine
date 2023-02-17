@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using MonoEngine.Core;
 
-namespace MonoEngine.Bindings
+namespace MonoEngine.GL
 {
     public class VertexBuffer2D
     {

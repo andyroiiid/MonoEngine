@@ -22,7 +22,8 @@ public class Game
         Debug.Info("Init");
 
         Window.Cursor = false;
-        Renderer2D.SetClearColor(Color.Black);
+        ImmediateContext.SetClearColor(Color.Black);
+        ImmediateContext.EnableBlend();
 
         _shader = new BaseShader();
         _font = new BitmapFont(new Texture(Assets.FontSharedTechMono));
@@ -51,7 +52,7 @@ public class Game
             Window.Close();
         }
 
-        Renderer2D.Clear();
+        ImmediateContext.Clear();
 
         _shader.Use();
 

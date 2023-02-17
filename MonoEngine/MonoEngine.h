@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include "Core/Movable.h"
-#include "GFX/Renderer2D.h"
 #include "Mono/MonoBasics.h"
 #include "Mono/MonoGame.h"
 #include "Window/Window.h"
@@ -21,6 +20,4 @@ public:
 private:
     MonoBasics m_mono;
     MonoGame   m_game;
-
-    Renderer2D m_renderer;
 };

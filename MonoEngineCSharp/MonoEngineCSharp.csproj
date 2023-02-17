@@ -40,16 +40,16 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="GL\ImmediateContext.cs" />
+        <Compile Include="GL\Shader.cs" />
+        <Compile Include="GL\Texture.cs" />
+        <Compile Include="GL\VertexBuffer2D.cs" />
         <Compile Include="ShaderSources.Designer.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
             <DependentUpon>ShaderSources.resx</DependentUpon>
         </Compile>
         <Compile Include="Bindings\Debug.cs" />
-        <Compile Include="Bindings\Renderer2D.cs" />
-        <Compile Include="Bindings\Shader.cs" />
-        <Compile Include="Bindings\Texture.cs" />
-        <Compile Include="Bindings\VertexBuffer2D.cs" />
         <Compile Include="Bindings\Window.cs" />
         <Compile Include="BitmapFont.cs" />
         <Compile Include="Core\Color.cs" />

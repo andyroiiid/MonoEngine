@@ -1,5 +1,5 @@
-﻿using MonoEngine.Bindings;
-using MonoEngine.Core;
+﻿using MonoEngine.Core;
+using MonoEngine.GL;
 
 namespace MonoEngine
 {

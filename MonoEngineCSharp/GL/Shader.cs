@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace MonoEngine.Bindings
+namespace MonoEngine.GL
 {
     public class Shader
     {

@@ -1,11 +1,17 @@
 ﻿using System.Runtime.InteropServices;
 using MonoEngine.Core;
 
-namespace MonoEngine.Bindings
+namespace MonoEngine.GL
 {
-    public static class Renderer2D
+    public static class ImmediateContext
     {
-        private const string Prefix = "Renderer2D_";
+        private const string Prefix = "ImmediateContext_";
+
+        [DllImport("__Internal", EntryPoint = Prefix + "EnableBlend")]
+        public static extern void EnableBlend();
+
+        [DllImport("__Internal", EntryPoint = Prefix + "DisableBlend")]
+        public static extern void DisableBlend();
 
         [DllImport("__Internal", EntryPoint = Prefix + "SetClearColor")]
         private static extern void SetClearColor(float r, float g, float b, float a);

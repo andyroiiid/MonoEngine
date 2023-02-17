@@ -1,4 +1,4 @@
-﻿using MonoEngine.Bindings;
+﻿using MonoEngine.GL;
 
 namespace MonoEngine.Shaders
 {
