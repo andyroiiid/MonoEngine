@@ -50,9 +50,9 @@ static GLuint CreateProgram(const std::initializer_list<GLuint> &shaders) {
     return program;
 }
 
-Shader::Shader(const std::string &vertexSource, const std::string &fragmentSource) {
-    const GLuint vertexShader   = CreateShader(GL_VERTEX_SHADER, vertexSource.c_str());
-    const GLuint fragmentShader = CreateShader(GL_FRAGMENT_SHADER, fragmentSource.c_str());
+Shader::Shader(const char *vertexSource, const char *fragmentSource) {
+    const GLuint vertexShader   = CreateShader(GL_VERTEX_SHADER, vertexSource);
+    const GLuint fragmentShader = CreateShader(GL_FRAGMENT_SHADER, fragmentSource);
 
     m_program = CreateProgram({vertexShader, fragmentShader});
 
@@ -69,31 +69,26 @@ void Shader::Use() {
     glUseProgram(m_program);
 }
 
-GLint Shader::GetUniformLocation(const std::string &name) const {
-    return glGetUniformLocation(m_program, name.c_str());
+GLint Shader::GetUniformLocation(const char *name) const {
+    return glGetUniformLocation(m_program, name);
 }
 
 // ReSharper disable once CppMemberFunctionMayBeConst
-void Shader::SetUniform(const GLint location, const float value) {
-    glProgramUniform1f(m_program, location, value);
+void Shader::SetUniform(const GLint location, const float x) {
+    glProgramUniform1f(m_program, location, x);
 }
 
 // ReSharper disable once CppMemberFunctionMayBeConst
-void Shader::SetUniform(const GLint location, const glm::vec2 &value) {
-    glProgramUniform2fv(m_program, location, 1, glm::value_ptr(value));
+void Shader::SetUniform(const GLint location, const float x, const float y) {
+    glProgramUniform2f(m_program, location, x, y);
 }
 
 // ReSharper disable once CppMemberFunctionMayBeConst
-void Shader::SetUniform(const GLint location, const glm::vec3 &value) {
-    glProgramUniform3fv(m_program, location, 1, glm::value_ptr(value));
+void Shader::SetUniform(const GLint location, const float x, const float y, const float z) {
+    glProgramUniform3f(m_program, location, x, y, z);
 }
 
 // ReSharper disable once CppMemberFunctionMayBeConst
-void Shader::SetUniform(const GLint location, const glm::vec4 &value) {
-    glProgramUniform4fv(m_program, location, 1, glm::value_ptr(value));
-}
-
-// ReSharper disable once CppMemberFunctionMayBeConst
-void Shader::SetUniform(const GLint location, const glm::mat4 &value) {
-    glProgramUniformMatrix4fv(m_program, location, 1, GL_FALSE, glm::value_ptr(value));
+void Shader::SetUniform(const GLint location, const float x, const float y, const float z, const float w) {
+    glProgramUniform4f(m_program, location, x, y, z, w);
 }

@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include <glad/glad.h>
-#include <vector>
 
 #include "../Core/Movable.h"
 
@@ -19,22 +18,20 @@ public:
         Vertex::SetupVertexArray(m_vao);
     }
 
+    VertexBuffer(const size_t count, const Vertex *data)
+        : VertexBuffer() {
+        UpdateData(count, data, GL_STATIC_DRAW);
+    }
+
     ~VertexBuffer() {
         if (m_vbo) glDeleteBuffers(1, &m_vbo);
         if (m_vao) glDeleteVertexArrays(1, &m_vao);
     }
 
-    void UpdateData(const size_t count, const Vertex *data) {
+    void UpdateData(const size_t count, const Vertex *data, const GLenum usage = GL_DYNAMIC_DRAW) {
         m_count = static_cast<GLsizei>(count);
-        glNamedBufferData(m_vbo, count * sizeof(Vertex), data, GL_DYNAMIC_DRAW);
+        glNamedBufferData(m_vbo, count * sizeof(Vertex), data, usage);
     }
-
-    template<size_t Size>
-    void UpdateData(const Vertex (&data)[Size]) {
-        UpdateData(Size, data);
-    }
-
-    void UpdateData(const std::vector<Vertex> &vertices) { UpdateData(vertices.size(), vertices.data()); }
 
     void BindAndDraw(const GLenum mode) const {
         glBindVertexArray(m_vao);

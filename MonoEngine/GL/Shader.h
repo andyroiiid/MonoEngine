@@ -1,11 +1,6 @@
 ﻿#pragma once
 
 #include <glad/glad.h>
-#include <glm/mat4x4.hpp>
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
-#include <glm/vec4.hpp>
-#include <string>
 
 #include "../Core/Movable.h"
 
@@ -15,23 +10,21 @@ public:
 
     Shader() = default;
 
-    Shader(const std::string &vertexSource, const std::string &fragmentSource);
+    Shader(const char *vertexSource, const char *fragmentSource);
 
     ~Shader();
 
     void Use();
 
-    [[nodiscard]] GLint GetUniformLocation(const std::string &name) const;
+    [[nodiscard]] GLint GetUniformLocation(const char *name) const;
 
-    void SetUniform(GLint location, float value);
+    void SetUniform(GLint location, float x);
 
-    void SetUniform(GLint location, const glm::vec2 &value);
+    void SetUniform(GLint location, float x, float y);
 
-    void SetUniform(GLint location, const glm::vec3 &value);
+    void SetUniform(GLint location, float x, float y, float z);
 
-    void SetUniform(GLint location, const glm::vec4 &value);
-
-    void SetUniform(GLint location, const glm::mat4 &value);
+    void SetUniform(GLint location, float x, float y, float z, float w);
 
 private:
     Movable<GLuint> m_program;

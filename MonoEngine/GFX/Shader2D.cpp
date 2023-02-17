@@ -40,5 +40,5 @@ void main() {
 }
 
 void Shader2D::SetScreenSize(const glm::vec2 &screenSize) {
-    SetUniform(m_screenSizeLocation, screenSize);
+    SetUniform(m_screenSizeLocation, screenSize.x, screenSize.y);
 }

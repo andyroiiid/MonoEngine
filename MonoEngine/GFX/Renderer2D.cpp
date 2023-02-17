@@ -32,11 +32,6 @@ void Renderer2D::Clear() {
     glClearBufferfv(GL_COLOR, 0, m_clearColor);
 }
 
-void Renderer2D::DrawVertices(const size_t numVertices, const Vertex2D *vertices, const GLenum mode) {
-    m_vertexBuffer.UpdateData(numVertices, vertices);
-    m_vertexBuffer.BindAndDraw(mode);
-}
-
 // Bindings
 
 extern "C" {
@@ -46,9 +41,5 @@ __declspec(dllexport) void Renderer2D_SetClearColor(const float r, const float g
 
 __declspec(dllexport) void Renderer2D_Clear() {
     g_renderer2D->Clear();
-}
-
-__declspec(dllexport) void Renderer2D_DrawVertices(const Vertex2D *vertices, const int numVertices, const int mode) {
-    g_renderer2D->DrawVertices(numVertices, vertices, mode);
 }
 }

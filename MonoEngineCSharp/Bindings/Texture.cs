@@ -42,19 +42,11 @@ namespace MonoEngine.Bindings
 
         private readonly Handle _handle;
 
-        public Texture(int width, int height, byte[] pixelData)
-        {
-            _handle = Create(width, height, pixelData);
-        }
+        public Texture(int width, int height, byte[] pixelData) => _handle = Create(width, height, pixelData);
 
-        public Texture(byte[] fileData)
-        {
-            _handle = LoadFromMemory(fileData, fileData.Length);
-        }
+        public Texture(byte[] fileData) => _handle = LoadFromMemory(fileData, fileData.Length);
 
-        public Texture(string filename) : this(File.ReadAllBytes(filename))
-        {
-        }
+        public static Texture FromFile(string filename) => new Texture(File.ReadAllBytes(filename));
 
         public Vector2 Size
         {

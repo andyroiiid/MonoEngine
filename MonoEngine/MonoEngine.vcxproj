@@ -179,6 +179,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GFX\Renderer2D.cpp" />
+    <ClCompile Include="GFX\VertexBuffer2D.cpp" />
     <ClCompile Include="GL\Texture.cpp" />
     <ClCompile Include="MonoEngine.cpp" />
     <ClCompile Include="GFX\Shader2D.cpp" />

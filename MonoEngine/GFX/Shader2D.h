@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include <glm/vec2.hpp>
+
 #include "../GL/Shader.h"
 
 class Shader2D : public Shader {
