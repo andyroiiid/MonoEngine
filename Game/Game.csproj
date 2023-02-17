@@ -60,9 +60,9 @@
     <Content Include="Resources\kenney_tiny_town.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MonoEngineCSharp\MonoEngineCSharp.csproj">
+    <ProjectReference Include="..\MonoEngine.CSharp\MonoEngine.CSharp.csproj">
       <Project>{1a366f1b-f12d-4c4a-bfdc-a5f63552fa0c}</Project>
-      <Name>MonoEngineCSharp</Name>
+      <Name>MonoEngine.CSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
