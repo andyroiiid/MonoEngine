@@ -29,6 +29,7 @@ Window::Window(const char *title, const int width, const int height) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
     m_window = glfwCreateWindow(width, height, title, nullptr, nullptr);
     assert(m_window != nullptr);
 
@@ -52,6 +53,8 @@ Window::~Window() {
 }
 
 void Window::MainLoop(App *app) {
+    glfwShowWindow(m_window);
+
     glfwSetWindowUserPointer(m_window, app);
 
     app->Window = this;
@@ -71,13 +74,23 @@ void Window::MainLoop(App *app) {
 }
 
 // ReSharper disable once CppMemberFunctionMayBeConst
-void Window::Close() {
-    glfwSetWindowShouldClose(m_window, GLFW_TRUE);
+void Window::SetTitle(const char *title) {
+    glfwSetWindowTitle(m_window, title);
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void Window::SetSize(const int width, const int height) {
+    glfwSetWindowSize(m_window, width, height);
 }
 
 // ReSharper disable once CppMemberFunctionMayBeConst
 void Window::SetCursor(const bool enabled) {
     glfwSetInputMode(m_window, GLFW_CURSOR, enabled ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN);
+}
+
+// ReSharper disable once CppMemberFunctionMayBeConst
+void Window::Close() {
+    glfwSetWindowShouldClose(m_window, GLFW_TRUE);
 }
 
 glm::vec2 Window::GetMousePos() const {
@@ -93,12 +106,20 @@ bool Window::GetKey(const int key) const {
 // Bindings
 
 extern "C" {
-__declspec(dllexport) void Window_Close() {
-    g_window->Close();
+__declspec(dllexport) void Window_SetTitle(const char *title) {
+    g_window->SetTitle(title);
+}
+
+__declspec(dllexport) void Window_SetSize(const int width, const int height) {
+    g_window->SetSize(width, height);
 }
 
 __declspec(dllexport) void Window_SetCursor(const bool enabled) {
     g_window->SetCursor(enabled);
+}
+
+__declspec(dllexport) void Window_Close() {
+    g_window->Close();
 }
 
 __declspec(dllexport) void Window_GetMousePos(glm::vec2 &position) {

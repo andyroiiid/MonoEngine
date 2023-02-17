@@ -7,22 +7,30 @@ namespace MonoEngine.Bindings
     {
         private const string Prefix = "Window_";
 
-        [DllImport("__Internal", EntryPoint = Prefix + "Close")]
-        public static extern void Close();
+        [DllImport("__Internal", EntryPoint = Prefix + "SetTitle")]
+        private static extern void SetTitle(string title);
+
+        public static string Title
+        {
+            set => SetTitle(value);
+        }
+
+        [DllImport("__Internal", EntryPoint = Prefix + "SetSize")]
+        public static extern void SetSize(int width, int height);
 
         [DllImport("__Internal", EntryPoint = Prefix + "SetCursor")]
         private static extern void SetCursor(bool enabled);
-
-        [DllImport("__Internal", EntryPoint = Prefix + "GetMousePos")]
-        private static extern void GetMousePos(out Vector2 mousePos);
-
-        [DllImport("__Internal", EntryPoint = Prefix + "GetKey")]
-        public static extern bool GetKey(int key);
 
         public static bool Cursor
         {
             set => SetCursor(value);
         }
+
+        [DllImport("__Internal", EntryPoint = Prefix + "Close")]
+        public static extern void Close();
+
+        [DllImport("__Internal", EntryPoint = Prefix + "GetMousePos")]
+        private static extern void GetMousePos(out Vector2 mousePos);
 
         public static Vector2 MousePos
         {
@@ -32,5 +40,8 @@ namespace MonoEngine.Bindings
                 return mousePos;
             }
         }
+
+        [DllImport("__Internal", EntryPoint = Prefix + "GetKey")]
+        public static extern bool GetKey(int key);
     }
 }

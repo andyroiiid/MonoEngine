@@ -35,29 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Assets.resx</DependentUpon>
-    </Compile>
     <Compile Include="Game.cs" />
+    <Compile Include="GameConfig.cs" />
+    <Compile Include="JsonUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Assets.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Assets.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\font_shared_tech_mono.png" />
-    <Content Include="Resources\kenney_tiny_dungeon.png" />
-    <Content Include="Resources\kenney_tiny_town.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonoEngine.CSharp\MonoEngine.CSharp.csproj">
@@ -65,12 +54,26 @@
       <Name>MonoEngine.CSharp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Fonts\SharedTechMono.png" />
+    <Content Include="Assets\GameConfig.json" />
+    <Content Include="Assets\Textures\Kenney\TinyDungeon.png" />
+    <Content Include="Assets\Textures\Kenney\TinyTown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
+  <Target Name="BeforeBuild">
+    <ItemGroup>
+      <ExistingAssets Include="$(OutputPath)\Assets\**\*.*" />
+    </ItemGroup>
+    <Delete Files="@(ExistingAssets)" />
+  </Target>
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <Assets Include="Assets\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(Assets)" DestinationFolder="$(OutputPath)\Assets\%(RecursiveDir)" />
+  </Target>
 </Project>

@@ -11,8 +11,8 @@ public class Game
 {
     private BaseShader _shader;
     private BitmapFont _font;
-    private TextureGridAtlas _kenneyTinyTown;
     private TextureGridAtlas _kenneyTinyDungeon;
+    private TextureGridAtlas _kenneyTinyTown;
 
     private Vector2 _screenSize;
 
@@ -20,14 +20,19 @@ public class Game
     {
         Debug.Info("Init");
 
+        var gameConfig = JsonUtils.LoadFromFile<GameConfig>("Assets/GameConfig.json");
+
+        Window.Title = gameConfig.Title;
+        Window.SetSize(gameConfig.Width, gameConfig.Height);
         Window.Cursor = false;
+
         ImmediateContext.SetClearColor(Color.Black);
         ImmediateContext.EnableBlend();
 
         _shader = new BaseShader();
-        _font = new BitmapFont(new Texture(Assets.FontSharedTechMono));
-        _kenneyTinyTown = new TextureGridAtlas(new Texture(Assets.KenneyTinyTown), 12, 11);
-        _kenneyTinyDungeon = new TextureGridAtlas(new Texture(Assets.KenneyTinyDungeon), 12, 11);
+        _font = new BitmapFont(Texture.FromFile("Assets/Fonts/SharedTechMono.png"));
+        _kenneyTinyDungeon = new TextureGridAtlas(Texture.FromFile("Assets/Textures/Kenney/TinyDungeon.png"), 12, 11);
+        _kenneyTinyTown = new TextureGridAtlas(Texture.FromFile("Assets/Textures/Kenney/TinyTown.png"), 12, 11);
     }
 
     private void Shutdown()
@@ -52,16 +57,16 @@ public class Game
             var mousePos = Window.MousePos;
             mousePos.Y = _screenSize.Y - mousePos.Y;
 
-            _kenneyTinyTown.Texture.Bind(0);
-            DynamicRenderer.DrawRect(
-                new Rect(mousePos - _kenneyTinyTown.GridPixelSize * 4.0f, _kenneyTinyTown.GridPixelSize * 4.0f),
-                _kenneyTinyTown.GetGridUvRect(2)
-            );
-
             _kenneyTinyDungeon.Texture.Bind(0);
             DynamicRenderer.DrawRect(
                 new Rect(mousePos, _kenneyTinyDungeon.GridPixelSize * 4.0f),
                 _kenneyTinyDungeon.GetGridUvRect(12)
+            );
+
+            _kenneyTinyTown.Texture.Bind(0);
+            DynamicRenderer.DrawRect(
+                new Rect(mousePos - _kenneyTinyTown.GridPixelSize * 4.0f, _kenneyTinyTown.GridPixelSize * 4.0f),
+                _kenneyTinyTown.GetGridUvRect(2)
             );
         }
     }

@@ -32,9 +32,13 @@ public:
 
     void MainLoop(App *app);
 
-    void Close();
+    void SetTitle(const char *title);
+
+    void SetSize(int width, int height);
 
     void SetCursor(bool enabled);
+
+    void Close();
 
     [[nodiscard]] glm::vec2 GetMousePos() const;
 
