@@ -56,8 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\font_shared_tech_mono.png" />
+    <Content Include="Resources\base.frag.glsl" />
     <Content Include="Resources\kenney_tiny_dungeon.png" />
     <Content Include="Resources\kenney_tiny_town.png" />
+    <Content Include="Resources\base.vert.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonoEngineCSharp\MonoEngineCSharp.csproj">

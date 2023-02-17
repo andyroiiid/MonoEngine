@@ -1,5 +1,7 @@
 ﻿#include "MonoEngine.h"
 
+#include <glad/glad.h>
+
 static constexpr auto ASSEMBLY_DIR  = "C:/Program Files/Mono/lib";
 static constexpr auto CONFIG_DIR    = "C:/Program Files/Mono/etc";
 static constexpr auto DOMAIN_NAME   = "MonoEngine";
@@ -20,7 +22,6 @@ void MonoEngine::Frame() {
 }
 
 void MonoEngine::Resize(const int width, const int height) {
-    m_renderer.OnResize(width, height);
     glViewport(0, 0, width, height);
     m_game.Resize(width, height);
 }

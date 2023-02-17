@@ -182,7 +182,6 @@
     <ClCompile Include="GFX\VertexBuffer2D.cpp" />
     <ClCompile Include="GL\Texture.cpp" />
     <ClCompile Include="MonoEngine.cpp" />
-    <ClCompile Include="GFX\Shader2D.cpp" />
     <ClCompile Include="GFX\Vertex2D.cpp" />
     <ClCompile Include="GL\Shader.cpp" />
     <ClCompile Include="Mono\MonoDebug.cpp" />
@@ -344,7 +343,6 @@
     <ClInclude Include="GL\Texture.h" />
     <ClInclude Include="MonoEngine.h" />
     <ClInclude Include="GFX\VertexBuffer2D.h" />
-    <ClInclude Include="GFX\Shader2D.h" />
     <ClInclude Include="GFX\Vertex2D.h" />
     <ClInclude Include="GL\VertexBuffer.h" />
     <ClInclude Include="GL\Shader.h" />

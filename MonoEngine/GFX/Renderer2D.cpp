@@ -1,5 +1,8 @@
 ﻿#include "Renderer2D.h"
 
+#include <cassert>
+#include <glad/glad.h>
+
 static Renderer2D *g_renderer2D = nullptr;
 
 Renderer2D::Renderer2D() {
@@ -8,16 +11,10 @@ Renderer2D::Renderer2D() {
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    m_shader.Use();
 }
 
 Renderer2D::~Renderer2D() {
     g_renderer2D = nullptr;
-}
-
-void Renderer2D::OnResize(int width, int height) {
-    m_shader.SetScreenSize({width, height});
 }
 
 void Renderer2D::SetClearColor(const float r, const float g, const float b, const float a) {

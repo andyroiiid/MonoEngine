@@ -9,7 +9,7 @@ namespace MonoEngine.Bindings
         private const string Prefix = "VertexBuffer2D_";
 
         [DllImport("__Internal", EntryPoint = Prefix + "Destroy")]
-        private static extern void Destroy(IntPtr texture);
+        private static extern void Destroy(IntPtr vertexBuffer2D);
 
         // ReSharper disable once ClassNeverInstantiated.Local
         private class Handle : SafeHandle

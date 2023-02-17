@@ -42,6 +42,7 @@
     <ItemGroup>
         <Compile Include="Bindings\Debug.cs" />
         <Compile Include="Bindings\Renderer2D.cs" />
+        <Compile Include="Bindings\Shader.cs" />
         <Compile Include="Bindings\Texture.cs" />
         <Compile Include="Bindings\VertexBuffer2D.cs" />
         <Compile Include="Bindings\Window.cs" />

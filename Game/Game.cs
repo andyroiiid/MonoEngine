@@ -8,6 +8,8 @@ using MonoEngine.GL;
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
 public class Game
 {
+    private Shader _shader;
+    private int _shaderScreenSizeLocation;
     private BitmapFont _font;
     private VertexBuffer2D _dynamicVertices;
     private TextureGridAtlas _kenneyTinyTown;
@@ -22,6 +24,8 @@ public class Game
         Window.Cursor = false;
         Renderer2D.SetClearColor(Color.Black);
 
+        _shader = new Shader(Assets.ShaderBaseVertex, Assets.ShaderBaseFragment);
+        _shaderScreenSizeLocation = _shader.GetUniformLocation("uScreenSize");
         _font = new BitmapFont(new Texture(Assets.FontSharedTechMono));
         _dynamicVertices = new VertexBuffer2D();
         _kenneyTinyTown = new TextureGridAtlas(new Texture(Assets.KenneyTinyTown), 12, 11);
@@ -50,6 +54,8 @@ public class Game
 
         Renderer2D.Clear();
 
+        _shader.Use();
+
         _font.DrawText("Hello, world!", new Vector2(32.0f, 32.0f), Color.White);
 
         {
@@ -74,6 +80,7 @@ public class Game
     {
         _screenSize.X = width;
         _screenSize.Y = height;
+        _shader.SetUniform(_shaderScreenSizeLocation, width, height);
         Debug.Info($"Resize {_screenSize}");
     }
 }

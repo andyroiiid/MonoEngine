@@ -92,3 +92,39 @@ void Shader::SetUniform(const GLint location, const float x, const float y, cons
 void Shader::SetUniform(const GLint location, const float x, const float y, const float z, const float w) {
     glProgramUniform4f(m_program, location, x, y, z, w);
 }
+
+// Bindings
+
+extern "C" {
+__declspec(dllexport) void Shader_Destroy(const Shader *shader) {
+    delete shader;
+}
+
+__declspec(dllexport) Shader *Shader_Create(const char *vertexSource, const char *fragmentSource) {
+    return new Shader(vertexSource, fragmentSource);
+}
+
+__declspec(dllexport) void Shader_Use(Shader *shader) {
+    shader->Use();
+}
+
+__declspec(dllexport) int Shader_GetUniformLocation(const Shader *shader, const char *name) {
+    return shader->GetUniformLocation(name);
+}
+
+__declspec(dllexport) void Shader_SetUniform1F(Shader *shader, const int location, const float x) {
+    shader->SetUniform(location, x);
+}
+
+__declspec(dllexport) void Shader_SetUniform2F(Shader *shader, const int location, const float x, const float y) {
+    shader->SetUniform(location, x, y);
+}
+
+__declspec(dllexport) void Shader_SetUniform3F(Shader *shader, const int location, const float x, const float y, const float z) {
+    shader->SetUniform(location, x, y, z);
+}
+
+__declspec(dllexport) void Shader_SetUniform4F(Shader *shader, const int location, const float x, const float y, const float z, const float w) {
+    shader->SetUniform(location, x, y, z, w);
+}
+}
