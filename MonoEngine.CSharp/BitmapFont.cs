@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using MonoEngine.Core;
-using MonoEngine.GL;
 using MonoEngine.Tiles;
 
 namespace MonoEngine
@@ -9,32 +8,26 @@ namespace MonoEngine
     {
         private readonly Tileset _tileset;
 
-        public BitmapFont(Texture texture)
+        public BitmapFont(string filename)
         {
-            _tileset = new Tileset(texture, 16, 16);
-        }
-
-        private Vertex2D[] BuildTextVertices(string text, in Color color)
-        {
-            var position = Vector2.Zero;
-            var drawCalls = new List<Tileset.TileDrawCall>(text.Length);
-            foreach (var c in text)
-            {
-                if (!char.IsWhiteSpace(c))
-                {
-                    drawCalls.Add(new Tileset.TileDrawCall(c, position, color));
-                }
-
-                position.X += _tileset.TilePixelSize.X;
-            }
-
-            return _tileset.BuildDrawCallTriangles(drawCalls);
+            _tileset = new Tileset(filename, 16, 16);
         }
 
         public void DrawText(string text, in Vector2 position, in Color color)
         {
-            _tileset.Texture.Bind(0);
-            DynamicRenderer.DrawVertices(BuildTextVertices(text, color), Primitive.Triangles, position);
+            var offset = Vector2.Zero;
+            var drawCalls = new List<TileDrawCall>(text.Length);
+            foreach (var c in text)
+            {
+                if (!char.IsWhiteSpace(c))
+                {
+                    drawCalls.Add(new TileDrawCall(c, offset, color));
+                }
+
+                offset.X += _tileset.TileSize.X;
+            }
+
+            _tileset.DrawTiles(drawCalls, position);
         }
     }
 }

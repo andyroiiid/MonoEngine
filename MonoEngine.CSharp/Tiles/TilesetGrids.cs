@@ -6,6 +6,9 @@ namespace MonoEngine.Tiles
     {
         private readonly Rect[] _grids;
 
+        // Top-left index: 0
+        // Top-right index: cols - 1
+        // Bottom-right index: cols * rows - 1
         public TilesetGrids(int cols, int rows)
         {
             _grids = new Rect[cols * rows];

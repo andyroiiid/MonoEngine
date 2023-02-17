@@ -2,55 +2,63 @@
 using System.Collections.Generic;
 using MonoEngine.Core;
 using MonoEngine.GL;
+using MonoEngine.Shaders;
 
 namespace MonoEngine.Tiles
 {
     public class Tileset
     {
-        public readonly Texture Texture;
-        public readonly Vector2 TilePixelSize;
+        public readonly Vector2 TileSize;
 
+        private readonly Texture _texture;
         private readonly TilesetGrids _grids;
 
-        public Tileset(Texture texture, int cols, int rows)
+        public Tileset(string filename, int cols, int rows)
         {
-            Texture = texture;
-            TilePixelSize = Texture.Size / new Vector2(cols, rows);
+            _texture = Texture.FromFile(filename);
+            TileSize = _texture.Size / new Vector2(cols, rows);
             _grids = new TilesetGrids(cols, rows);
         }
 
-        public Rect GetTileUvRect(int index) => _grids[index];
-
-        public struct TileDrawCall
+        private void Draw(Vertex2D[] vertices, in Vector2 position)
         {
-            public readonly int Index;
-            public readonly Vector2 Position;
-            public readonly Color Color;
-
-            public TileDrawCall(int index, in Vector2 position, in Color color)
-            {
-                Index = index;
-                Position = position;
-                Color = color;
-            }
+            BaseShader.Use();
+            BaseShader.SetPosition(position);
+            _texture.Bind(0);
+            ImmediateContext.DrawVertices(vertices, Primitive.Triangles);
         }
 
-        public Vertex2D[] BuildDrawCallTriangles(IList<TileDrawCall> drawCalls)
+        public void DrawTile(int index, in Vector2 position, in Color color)
+        {
+            var vertices = new Vertex2D[6];
+            VertexUtils.BuildRectTriangles(
+                vertices,
+                0,
+                new Rect(Vector2.Zero, TileSize),
+                _grids[index],
+                color
+            );
+
+            Draw(vertices, position);
+        }
+
+        public void DrawTiles(IList<TileDrawCall> drawCalls, in Vector2 position)
         {
             var vertices = new Vertex2D[drawCalls.Count * 6];
             var offset = 0;
             foreach (var drawCall in drawCalls)
             {
                 VertexUtils.BuildRectTriangles(
-                    new ArraySegment<Vertex2D>(vertices, offset, 6),
-                    new Rect(drawCall.Position, TilePixelSize),
-                    GetTileUvRect(drawCall.Index),
+                    vertices,
+                    offset,
+                    new Rect(drawCall.Offset, TileSize),
+                    _grids[drawCall.Index],
                     drawCall.Color
                 );
                 offset += 6;
             }
 
-            return vertices;
+            Draw(vertices, position);
         }
     }
 }

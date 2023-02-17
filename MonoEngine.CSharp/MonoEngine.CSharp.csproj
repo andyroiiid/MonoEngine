@@ -40,7 +40,6 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="DynamicRenderer.cs" />
         <Compile Include="GL\ImmediateContext.cs" />
         <Compile Include="GL\Shader.cs" />
         <Compile Include="GL\Texture.cs" />
@@ -61,6 +60,7 @@
         <Compile Include="GL\Primitive.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Shaders\BaseShader.cs" />
+        <Compile Include="Tiles\TileDrawCall.cs" />
         <Compile Include="Tiles\Tileset.cs" />
         <Compile Include="Tiles\TilesetGrids.cs" />
         <Compile Include="VertexUtils.cs" />

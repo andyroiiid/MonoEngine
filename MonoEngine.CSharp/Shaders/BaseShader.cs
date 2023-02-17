@@ -3,19 +3,20 @@ using MonoEngine.GL;
 
 namespace MonoEngine.Shaders
 {
-    public class BaseShader : Shader
+    public static class BaseShader
     {
-        private readonly int _uScreenSize;
-        private readonly int _uPosition;
+        private static readonly Shader Shader = new Shader(
+            ShaderSources.ShaderBaseVertex,
+            ShaderSources.ShaderBaseFragment
+        );
 
-        public BaseShader() : base(ShaderSources.ShaderBaseVertex, ShaderSources.ShaderBaseFragment)
-        {
-            _uScreenSize = GetUniformLocation("uScreenSize");
-            _uPosition = GetUniformLocation("uPosition");
-        }
+        private static readonly int UScreenSize = Shader.GetUniformLocation("uScreenSize");
+        private static readonly int UPosition = Shader.GetUniformLocation("uPosition");
 
-        public void SetScreenSize(int width, int height) => SetUniform(_uScreenSize, width, height);
+        public static void Use() => Shader.Use();
 
-        public void SetPosition(Vector2 position) => SetUniform(_uPosition, position);
+        public static void SetScreenSize(Vector2 screenSize) => Shader.SetUniform(UScreenSize, screenSize);
+
+        public static void SetPosition(Vector2 position) => Shader.SetUniform(UPosition, position);
     }
 }

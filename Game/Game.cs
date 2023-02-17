@@ -3,6 +3,7 @@ using MonoEngine;
 using MonoEngine.Bindings;
 using MonoEngine.Core;
 using MonoEngine.GL;
+using MonoEngine.Shaders;
 using MonoEngine.Tiles;
 
 [SuppressMessage("ReSharper", "UnusedType.Global")]
@@ -14,6 +15,7 @@ public class Game
     private Tileset _kenneyTinyTown;
 
     private Vector2 _screenSize;
+    private Vector2 _mousePos;
 
     private void Init()
     {
@@ -26,11 +28,10 @@ public class Game
         Window.Cursor = false;
 
         ImmediateContext.SetClearColor(Color.Black);
-        ImmediateContext.EnableBlend();
 
-        _font = new BitmapFont(Texture.FromFile("Assets/Fonts/SharedTechMono.png"));
-        _kenneyTinyDungeon = new Tileset(Texture.FromFile("Assets/Textures/Kenney/TinyDungeon.png"), 12, 11);
-        _kenneyTinyTown = new Tileset(Texture.FromFile("Assets/Textures/Kenney/TinyTown.png"), 12, 11);
+        _font = new BitmapFont("Assets/Fonts/SharedTechMono.png");
+        _kenneyTinyDungeon = new Tileset("Assets/Textures/Kenney/TinyDungeon.png", 12, 11);
+        _kenneyTinyTown = new Tileset("Assets/Textures/Kenney/TinyTown.png", 12, 11);
     }
 
     private void Shutdown()
@@ -40,42 +41,34 @@ public class Game
 
     private void Frame()
     {
+        Update();
+        Draw();
+    }
+
+    private void Resize(int width, int height)
+    {
+        _screenSize = new Vector2(width, height);
+        BaseShader.SetScreenSize(_screenSize);
+        Debug.Info($"Resize {_screenSize}");
+    }
+
+    private void Update()
+    {
         if (Window.GetKey(Keys.Escape))
         {
             Window.Close();
         }
 
-        ImmediateContext.Clear();
-
-        DynamicRenderer.UseShader();
-
-        _font.DrawText("Hello, world!", new Vector2(32.0f, 32.0f), Color.White);
-
-        {
-            var mousePos = Window.MousePos;
-            mousePos.Y = _screenSize.Y - mousePos.Y;
-
-            _kenneyTinyDungeon.Texture.Bind(0);
-            DynamicRenderer.DrawRect(
-                _kenneyTinyDungeon.TilePixelSize * 4.0f,
-                _kenneyTinyDungeon.GetTileUvRect(12),
-                mousePos
-            );
-
-            _kenneyTinyTown.Texture.Bind(0);
-            DynamicRenderer.DrawRect(
-                _kenneyTinyTown.TilePixelSize * 4.0f,
-                _kenneyTinyTown.GetTileUvRect(2),
-                mousePos - _kenneyTinyTown.TilePixelSize * 4.0f
-            );
-        }
+        _mousePos = Window.MousePos;
+        _mousePos.Y = _screenSize.Y - _mousePos.Y;
     }
 
-    private void Resize(int width, int height)
+    private void Draw()
     {
-        _screenSize.X = width;
-        _screenSize.Y = height;
-        DynamicRenderer.Resize(width, height);
-        Debug.Info($"Resize {_screenSize}");
+        ImmediateContext.Clear();
+
+        _font.DrawText("Hello, world!", new Vector2(32.0f, 32.0f), Color.White);
+        _kenneyTinyDungeon.DrawTile(12, _mousePos, Color.White);
+        _kenneyTinyTown.DrawTile(2, _mousePos - _kenneyTinyTown.TileSize, Color.White);
     }
 }

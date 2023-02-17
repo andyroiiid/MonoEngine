@@ -7,12 +7,6 @@ namespace MonoEngine.GL
     {
         private const string Prefix = "ImmediateContext_";
 
-        [DllImport("__Internal", EntryPoint = Prefix + "EnableBlend")]
-        public static extern void EnableBlend();
-
-        [DllImport("__Internal", EntryPoint = Prefix + "DisableBlend")]
-        public static extern void DisableBlend();
-
         [DllImport("__Internal", EntryPoint = Prefix + "SetClearColor")]
         private static extern void SetClearColor(float r, float g, float b, float a);
 
@@ -20,5 +14,13 @@ namespace MonoEngine.GL
 
         [DllImport("__Internal", EntryPoint = Prefix + "Clear")]
         public static extern void Clear();
+
+        private static readonly VertexBuffer2D DynamicVertices = new VertexBuffer2D();
+
+        public static void DrawVertices(Vertex2D[] vertices, Primitive primitive)
+        {
+            DynamicVertices.UpdateData(vertices);
+            DynamicVertices.BindAndDraw(primitive);
+        }
     }
 }

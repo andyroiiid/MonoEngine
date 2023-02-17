@@ -47,6 +47,6 @@ namespace MonoEngine.GL
 
         public void UpdateData(Vertex2D[] vertices) => UpdateData(_handle, vertices, vertices.Length);
 
-        public void BindAndDraw(GL.Primitive primitive) => BindAndDraw(_handle, (int)primitive);
+        public void BindAndDraw(Primitive primitive) => BindAndDraw(_handle, (int)primitive);
     }
 }

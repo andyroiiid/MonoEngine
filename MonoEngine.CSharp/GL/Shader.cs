@@ -50,33 +50,33 @@ namespace MonoEngine.GL
 
         private readonly Handle _handle;
 
-        protected Shader(string vertexSource, string fragmentSource) => _handle = Create(vertexSource, fragmentSource);
+        public Shader(string vertexSource, string fragmentSource) => _handle = Create(vertexSource, fragmentSource);
 
         public void Use() => Use(_handle);
 
-        protected int GetUniformLocation(string name) => GetUniformLocation(_handle, name);
+        public int GetUniformLocation(string name) => GetUniformLocation(_handle, name);
 
-        protected void SetUniform(int location, float x)
+        public void SetUniform(int location, float x)
         {
             SetUniform1F(_handle, location, x);
         }
 
-        protected void SetUniform(int location, float x, float y)
+        public void SetUniform(int location, float x, float y)
         {
             SetUniform2F(_handle, location, x, y);
         }
 
-        protected void SetUniform(int location, Vector2 v)
+        public void SetUniform(int location, Vector2 v)
         {
             SetUniform(location, v.X, v.Y);
         }
 
-        protected void SetUniform(int location, float x, float y, float z)
+        public void SetUniform(int location, float x, float y, float z)
         {
             SetUniform3F(_handle, location, x, y, z);
         }
 
-        protected void SetUniform(int location, float x, float y, float z, float w)
+        public void SetUniform(int location, float x, float y, float z, float w)
         {
             SetUniform4F(_handle, location, x, y, z, w);
         }
