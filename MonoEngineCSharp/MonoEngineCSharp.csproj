@@ -40,6 +40,11 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="ShaderSources.Designer.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>ShaderSources.resx</DependentUpon>
+        </Compile>
         <Compile Include="Bindings\Debug.cs" />
         <Compile Include="Bindings\Renderer2D.cs" />
         <Compile Include="Bindings\Shader.cs" />
@@ -54,8 +59,19 @@
         <Compile Include="Core\Vertex2D.cs" />
         <Compile Include="GL\Primitive.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Shaders\BaseShader.cs" />
         <Compile Include="TextureGridAtlas.cs" />
         <Compile Include="VertexUtils.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="ShaderSources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>ShaderSources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="ShaderSources\base.frag.glsl" />
+        <Content Include="ShaderSources\base.vert.glsl" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

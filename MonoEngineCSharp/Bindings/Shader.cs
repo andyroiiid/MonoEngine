@@ -49,28 +49,28 @@ namespace MonoEngine.Bindings
 
         private readonly Handle _handle;
 
-        public Shader(string vertexSource, string fragmentSource) => _handle = Create(vertexSource, fragmentSource);
+        protected Shader(string vertexSource, string fragmentSource) => _handle = Create(vertexSource, fragmentSource);
 
         public void Use() => Use(_handle);
 
-        public int GetUniformLocation(string name) => GetUniformLocation(_handle, name);
+        protected int GetUniformLocation(string name) => GetUniformLocation(_handle, name);
 
-        public void SetUniform(int location, float x)
+        protected void SetUniform(int location, float x)
         {
             SetUniform1F(_handle, location, x);
         }
 
-        public void SetUniform(int location, float x, float y)
+        protected void SetUniform(int location, float x, float y)
         {
             SetUniform2F(_handle, location, x, y);
         }
 
-        public void SetUniform(int location, float x, float y, float z)
+        protected void SetUniform(int location, float x, float y, float z)
         {
             SetUniform3F(_handle, location, x, y, z);
         }
 
-        public void SetUniform(int location, float x, float y, float z, float w)
+        protected void SetUniform(int location, float x, float y, float z, float w)
         {
             SetUniform4F(_handle, location, x, y, z, w);
         }

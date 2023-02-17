@@ -21,10 +21,4 @@
     <data name="KenneyTinyTown" type="System.Resources.ResXFileRef">
         <value>Resources\kenney_tiny_town.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </data>
-    <data name="ShaderBaseVertex" type="System.Resources.ResXFileRef">
-        <value>Resources\base.vert.glsl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </data>
-    <data name="ShaderBaseFragment" type="System.Resources.ResXFileRef">
-        <value>Resources\base.frag.glsl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </data>
 </root>
