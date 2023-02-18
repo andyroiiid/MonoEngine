@@ -10,7 +10,7 @@ namespace MonoEngine
 
         public BitmapFont(string filename)
         {
-            _tileset = new Tileset(filename, 16, 16);
+            _tileset = new Tileset(filename, 16, 16, Vector2.Zero);
         }
 
         public void DrawText(string text, in Transform transform, in Color color)

@@ -30,8 +30,8 @@ public class Game
         ImmediateContext.ClearColor = Color.Black;
 
         _font = new BitmapFont("Assets/Fonts/SharedTechMono.png");
-        _kenneyTinyDungeon = new Tileset("Assets/Textures/Kenney/TinyDungeon.png", 12, 11);
-        _kenneyTinyTown = new Tileset("Assets/Textures/Kenney/TinyTown.png", 12, 11);
+        _kenneyTinyDungeon = new Tileset("Assets/Textures/Kenney/TinyDungeon.png", 12, 11, Vector2.Half);
+        _kenneyTinyTown = new Tileset("Assets/Textures/Kenney/TinyTown.png", 12, 11, Vector2.Half);
     }
 
     private void Shutdown()
@@ -67,23 +67,15 @@ public class Game
     {
         ImmediateContext.Clear();
 
-        _font.DrawText("Hello, world!", new Transform(new Vector2(32.0f, 32.0f), 0.0f, Vector2.One), Color.White);
+        _font.DrawText("Hello, world!", new Transform(new Vector2(32.0f, 32.0f)), Color.White);
         _kenneyTinyDungeon.DrawTile(
             12,
-            new Transform(
-                _mousePos,
-                Window.Time,
-                Vector2.One * 4.0f
-            ),
+            new Transform(_mousePos, Window.Time, 4.0f),
             Color.White
         );
         _kenneyTinyTown.DrawTile(
             2,
-            new Transform(
-                _mousePos - _kenneyTinyTown.TileSize * 4.0f,
-                Window.Time,
-                Vector2.One * 4.0f
-            ),
+            new Transform(_mousePos - _kenneyTinyTown.TileSize * 4.0f, Window.Time, 4.0f),
             Color.White
         );
     }

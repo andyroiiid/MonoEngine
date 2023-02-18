@@ -11,12 +11,14 @@ namespace MonoEngine.Tiles
 
         private readonly Texture _texture;
         private readonly TilesetGrids _grids;
+        private readonly Vector2 _pivotOffset;
 
-        public Tileset(string filename, int cols, int rows)
+        public Tileset(string filename, int cols, int rows, in Vector2 pivot)
         {
             _texture = Texture.FromFile(filename);
             TileSize = _texture.Size / new Vector2(cols, rows);
             _grids = new TilesetGrids(cols, rows);
+            _pivotOffset = -TileSize * pivot;
         }
 
         private void Draw(Vertex2D[] vertices, in Transform transform)
@@ -33,7 +35,7 @@ namespace MonoEngine.Tiles
             VertexUtils.BuildRectTriangles(
                 vertices,
                 0,
-                new Rect(Vector2.Zero, TileSize),
+                new Rect(_pivotOffset, TileSize),
                 _grids[index],
                 color
             );
@@ -50,7 +52,7 @@ namespace MonoEngine.Tiles
                 VertexUtils.BuildRectTriangles(
                     vertices,
                     offset,
-                    new Rect(drawCall.Offset, TileSize),
+                    new Rect(drawCall.Offset + _pivotOffset, TileSize),
                     _grids[drawCall.Index],
                     drawCall.Color
                 );
