@@ -13,7 +13,7 @@ namespace MonoEngine
             _tileset = new Tileset(filename, 16, 16);
         }
 
-        public void DrawText(string text, in Vector2 position, in Color color)
+        public void DrawText(string text, in Transform transform, in Color color)
         {
             var offset = Vector2.Zero;
             var drawCalls = new List<TileDrawCall>(text.Length);
@@ -27,7 +27,7 @@ namespace MonoEngine
                 offset.X += _tileset.TileSize.X;
             }
 
-            _tileset.DrawTiles(drawCalls, position, 0.0f, Vector2.One);
+            _tileset.DrawTiles(drawCalls, transform);
         }
     }
 }

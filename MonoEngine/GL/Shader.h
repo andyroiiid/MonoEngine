@@ -26,6 +26,8 @@ public:
 
     void SetUniform(GLint location, float x, float y, float z, float w);
 
+    void SetUniform(GLint location, const float *values, int count);
+
 private:
     Movable<GLuint> m_program;
 };

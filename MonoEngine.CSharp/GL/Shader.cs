@@ -48,6 +48,9 @@ namespace MonoEngine.GL
         [DllImport("__Internal", EntryPoint = Prefix + "SetUniform4F")]
         private static extern void SetUniform4F(Handle shader, int location, float x, float y, float z, float w);
 
+        [DllImport("__Internal", EntryPoint = Prefix + "SetUniformFloats")]
+        private static extern void SetUniformFloats(Handle shader, int location, float[] values, int count);
+
         private readonly Handle _handle;
 
         public Shader(string vertexSource, string fragmentSource) => _handle = Create(vertexSource, fragmentSource);
@@ -66,7 +69,7 @@ namespace MonoEngine.GL
             SetUniform2F(_handle, location, x, y);
         }
 
-        public void SetUniform(int location, Vector2 v)
+        public void SetUniform(int location, in Vector2 v)
         {
             SetUniform(location, v.X, v.Y);
         }
@@ -79,6 +82,11 @@ namespace MonoEngine.GL
         public void SetUniform(int location, float x, float y, float z, float w)
         {
             SetUniform4F(_handle, location, x, y, z, w);
+        }
+
+        public void SetUniform(int location, params float[] values)
+        {
+            SetUniformFloats(_handle, location, values, values.Length);
         }
     }
 }

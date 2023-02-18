@@ -93,6 +93,11 @@ void Shader::SetUniform(const GLint location, const float x, const float y, cons
     glProgramUniform4f(m_program, location, x, y, z, w);
 }
 
+// ReSharper disable once CppMemberFunctionMayBeConst
+void Shader::SetUniform(const GLint location, const float *values, const int count) {
+    glProgramUniform1fv(m_program, location, count, values);
+}
+
 // Bindings
 
 extern "C" {
@@ -112,19 +117,23 @@ __declspec(dllexport) int Shader_GetUniformLocation(const Shader *shader, const 
     return shader->GetUniformLocation(name);
 }
 
-__declspec(dllexport) void Shader_SetUniform1F(Shader *shader, const int location, const float x) {
+__declspec(dllexport) void Shader_SetUniform1F(Shader *shader, int location, float x) {
     shader->SetUniform(location, x);
 }
 
-__declspec(dllexport) void Shader_SetUniform2F(Shader *shader, const int location, const float x, const float y) {
+__declspec(dllexport) void Shader_SetUniform2F(Shader *shader, int location, float x, float y) {
     shader->SetUniform(location, x, y);
 }
 
-__declspec(dllexport) void Shader_SetUniform3F(Shader *shader, const int location, const float x, const float y, const float z) {
+__declspec(dllexport) void Shader_SetUniform3F(Shader *shader, int location, float x, float y, float z) {
     shader->SetUniform(location, x, y, z);
 }
 
-__declspec(dllexport) void Shader_SetUniform4F(Shader *shader, const int location, const float x, const float y, const float z, const float w) {
+__declspec(dllexport) void Shader_SetUniform4F(Shader *shader, int location, float x, float y, float z, float w) {
     shader->SetUniform(location, x, y, z, w);
+}
+
+__declspec(dllexport) void Shader_SetUniformFloats(Shader *shader, int location, const float *values, int count) {
+    shader->SetUniform(location, values, count);
 }
 }

@@ -19,17 +19,15 @@ namespace MonoEngine.Tiles
             _grids = new TilesetGrids(cols, rows);
         }
 
-        private void Draw(Vertex2D[] vertices, in Vector2 position, float rotation, in Vector2 scale)
+        private void Draw(Vertex2D[] vertices, in Transform transform)
         {
             BaseShader.Use();
-            BaseShader.SetPosition(position);
-            BaseShader.SetRotation(rotation);
-            BaseShader.SetScale(scale);
+            BaseShader.SetTransform(transform);
             _texture.Bind(0);
             ImmediateContext.DrawVertices(vertices, Primitive.Triangles);
         }
 
-        public void DrawTile(int index, in Vector2 position, float rotation, in Vector2 scale, in Color color)
+        public void DrawTile(int index, in Transform transform, in Color color)
         {
             var vertices = new Vertex2D[6];
             VertexUtils.BuildRectTriangles(
@@ -40,10 +38,10 @@ namespace MonoEngine.Tiles
                 color
             );
 
-            Draw(vertices, position, rotation, scale);
+            Draw(vertices, transform);
         }
 
-        public void DrawTiles(IList<TileDrawCall> drawCalls, in Vector2 position, float rotation, in Vector2 scale)
+        public void DrawTiles(IList<TileDrawCall> drawCalls, in Transform transform)
         {
             var vertices = new Vertex2D[drawCalls.Count * 6];
             var offset = 0;
@@ -59,7 +57,7 @@ namespace MonoEngine.Tiles
                 offset += 6;
             }
 
-            Draw(vertices, position, rotation, scale);
+            Draw(vertices, transform);
         }
     }
 }

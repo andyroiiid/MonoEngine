@@ -67,19 +67,23 @@ public class Game
     {
         ImmediateContext.Clear();
 
-        _font.DrawText("Hello, world!", new Vector2(32.0f, 32.0f), Color.White);
+        _font.DrawText("Hello, world!", new Transform(new Vector2(32.0f, 32.0f), 0.0f, Vector2.One), Color.White);
         _kenneyTinyDungeon.DrawTile(
             12,
-            _mousePos,
-            Window.Time,
-            Vector2.One * 4.0f,
+            new Transform(
+                _mousePos,
+                Window.Time,
+                Vector2.One * 4.0f
+            ),
             Color.White
         );
         _kenneyTinyTown.DrawTile(
             2,
-            _mousePos - _kenneyTinyTown.TileSize * 4.0f,
-            Window.Time,
-            Vector2.One * 4.0f,
+            new Transform(
+                _mousePos - _kenneyTinyTown.TileSize * 4.0f,
+                Window.Time,
+                Vector2.One * 4.0f
+            ),
             Color.White
         );
     }

@@ -8,9 +8,7 @@ layout (location = 0) out vec2 vTexCoord;
 layout (location = 1) out vec4 vColor;
 
 layout (location = 0) uniform vec2 uScreenSize;
-layout (location = 1) uniform vec2 uPosition;
-layout (location = 2) uniform float uRotation;
-layout (location = 3) uniform vec2 uScale;
+layout (location = 1) uniform float uTransform[5];
 
 vec2 Rotate(vec2 v, float r)
 {
@@ -21,6 +19,9 @@ vec2 Rotate(vec2 v, float r)
 
 vec2 ObjectToWorld(vec2 position)
 {
+    const vec2 uPosition = vec2(uTransform[0], uTransform[1]);
+    const float uRotation = uTransform[2];
+    const vec2 uScale = vec2(uTransform[3], uTransform[4]);
     return uPosition + Rotate(position * uScale, uRotation);
 }
 
