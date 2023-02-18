@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
 [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
-[SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
+[SuppressMessage("ReSharper", "UnassignedField.Global")]
 public class GameConfig
 {
-    public string Title { get; set; }
-    public int Width { get; set; }
-    public int Height { get; set; }
+    public string Title;
+    public int Width;
+    public int Height;
 }

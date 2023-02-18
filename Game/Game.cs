@@ -27,7 +27,7 @@ public class Game
         Window.SetSize(gameConfig.Width, gameConfig.Height);
         Window.Cursor = false;
 
-        ImmediateContext.SetClearColor(Color.Black);
+        ImmediateContext.ClearColor = Color.Black;
 
         _font = new BitmapFont("Assets/Fonts/SharedTechMono.png");
         _kenneyTinyDungeon = new Tileset("Assets/Textures/Kenney/TinyDungeon.png", 12, 11);

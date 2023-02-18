@@ -10,7 +10,10 @@ namespace MonoEngine.GL
         [DllImport("__Internal", EntryPoint = Prefix + "SetClearColor")]
         private static extern void SetClearColor(float r, float g, float b, float a);
 
-        public static void SetClearColor(in Color color) => SetClearColor(color.R, color.G, color.B, color.A);
+        public static Color ClearColor
+        {
+            set => SetClearColor(value.R, value.G, value.B, value.A);
+        }
 
         [DllImport("__Internal", EntryPoint = Prefix + "Clear")]
         public static extern void Clear();
