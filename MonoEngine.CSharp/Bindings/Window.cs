@@ -29,6 +29,11 @@ namespace MonoEngine.Bindings
         [DllImport("__Internal", EntryPoint = Prefix + "Close")]
         public static extern void Close();
 
+        [DllImport("__Internal", EntryPoint = Prefix + "GetTime")]
+        private static extern float GetTime();
+
+        public static float Time => GetTime();
+
         [DllImport("__Internal", EntryPoint = Prefix + "GetMousePos")]
         private static extern void GetMousePos(out Vector2 mousePos);
 

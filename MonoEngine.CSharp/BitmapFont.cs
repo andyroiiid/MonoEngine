@@ -27,7 +27,7 @@ namespace MonoEngine
                 offset.X += _tileset.TileSize.X;
             }
 
-            _tileset.DrawTiles(drawCalls, position);
+            _tileset.DrawTiles(drawCalls, position, 0.0f, Vector2.One);
         }
     }
 }

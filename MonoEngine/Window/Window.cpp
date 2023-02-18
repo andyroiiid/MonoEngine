@@ -122,6 +122,10 @@ __declspec(dllexport) void Window_Close() {
     g_window->Close();
 }
 
+__declspec(dllexport) float Window_GetTime() {
+    return static_cast<float>(glfwGetTime());
+}
+
 __declspec(dllexport) void Window_GetMousePos(glm::vec2 &position) {
     position = g_window->GetMousePos();
 }
