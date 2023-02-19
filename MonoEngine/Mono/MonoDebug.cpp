@@ -3,7 +3,7 @@
 #include <spdlog/spdlog.h>
 
 void Debug_Info(const char *message) {
-    spdlog::info("Debug.Log: {}", message);
+    spdlog::info("Debug.Info: {}", message);
 }
 
 void Debug_Warn(const char *message) {

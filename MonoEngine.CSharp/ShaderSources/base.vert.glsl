@@ -12,9 +12,9 @@ layout (location = 1) uniform float uTransform[5];
 
 vec2 Rotate(vec2 v, float r)
 {
-    const float c = cos(r);
-    const float s = sin(r);
-    return vec2(c * v.x - s * v.y, s * v.x + c * v.y);
+    const float cos = cos(r);
+    const float sin = sin(r);
+    return vec2(cos * v.x - sin * v.y, sin * v.x + cos * v.y);
 }
 
 vec2 ObjectToWorld(vec2 position)
@@ -27,7 +27,9 @@ vec2 ObjectToWorld(vec2 position)
 
 vec2 WorldtoViewport(vec2 worldPosition)
 {
-    return worldPosition / uScreenSize * 2.0 - 1.0;
+    vec2 pos = worldPosition / uScreenSize * 2.0 - 1.0;
+    pos.y = -pos.y;
+    return pos;
 }
 
 void main() {

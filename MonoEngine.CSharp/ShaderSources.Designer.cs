@@ -90,13 +90,16 @@ namespace MonoEngine {
         ///layout (location = 1) out vec4 vColor;
         ///
         ///layout (location = 0) uniform vec2 uScreenSize;
+        ///layout (location = 1) uniform float uTransform[5];
         ///
-        ///void main() {
-        ///    const vec2 position = aPosition / uScreenSize * 2.0 - 1.0;
-        ///    gl_Position = vec4(position, 0.0, 1.0);
-        ///    vTexCoord = aTexCoord;
-        ///    vColor = aColor;
-        ///}.
+        ///vec2 Rotate(vec2 v, float r)
+        ///{
+        ///    const float cos = cos(r);
+        ///    const float sin = sin(r);
+        ///    return vec2(cos * v.x - sin * v.y, sin * v.x + cos * v.y);
+        ///}
+        ///
+        ///vec2 ObjectToW [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ShaderBaseVertex {
             get {

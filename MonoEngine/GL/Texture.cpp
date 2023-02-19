@@ -62,7 +62,6 @@ __declspec(dllexport) Texture *Texture_Create(int width, int height, const unsig
 }
 
 __declspec(dllexport) Texture *Texture_LoadFromMemory(const unsigned char *bytes, const int length) {
-    stbi_set_flip_vertically_on_load(true);
     int            width  = 0;
     int            height = 0;
     unsigned char *data   = stbi_load_from_memory(bytes, length, &width, &height, nullptr, 4);

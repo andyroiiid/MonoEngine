@@ -44,9 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.cs" />
-    <Compile Include="GameConfig.cs" />
-    <Compile Include="JsonUtils.cs" />
+    <Compile Include="ldtk\LdtkJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonoEngine.CSharp\MonoEngine.CSharp.csproj">
@@ -55,10 +55,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Fonts\SharedTechMono.png" />
-    <Content Include="Assets\GameConfig.json" />
+    <Content Include="Assets\Textures\Cursor.png" />
+    <Content Include="Assets\Textures\Fonts\SharedTechMono.png" />
+    <Content Include="Assets\World.ldtk" />
     <Content Include="Assets\Textures\Kenney\TinyDungeon.png" />
-    <Content Include="Assets\Textures\Kenney\TinyTown.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
